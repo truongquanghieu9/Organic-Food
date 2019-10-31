@@ -3,7 +3,7 @@ const {spliceId, pushId} = require("../utils/dbSupport");
 
 exports.get = async(req, res, next) => {
     try {
-        let review = await db.Review.find().populate("food_id").populate("people_id").exec();
+        let review = await db.Review.find().populate("food_id").populate("user_id").exec();
         return res.status(200).json(review);
     } catch(err) {
         return next(err);

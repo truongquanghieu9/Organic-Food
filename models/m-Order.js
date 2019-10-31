@@ -5,7 +5,7 @@ const {spliceId, casDelete} = require("../utils/dbSupport");
 const orderSchema = new mongoose.Schema({
     people_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "People"
+        ref: "User"
     },
     totalPrice: Number,
     pay_type: {

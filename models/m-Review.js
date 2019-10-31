@@ -8,7 +8,7 @@ const reviewSchema = new mongoose.Schema({
 	content: String,
     people_id: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "People"
+        ref: "User"
     },
     food_id: {
         type: mongoose.Schema.Types.ObjectId,

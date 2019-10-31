@@ -2,11 +2,11 @@ const db = require("../models");
 
 exports.create = async(req, res, next) => {
     try {
-        const {people_id} = req.params;
+        const {user_id} = req.params;
         const {orderDetails, order} = req.body;
 
         // Create Order and get order_id
-        let newOrder = await db.Order.create({...order, people_id});
+        let newOrder = await db.Order.create({...order, user_id});
 
         // add order_id for orderDetail
         for(let e of orderDetails) {
@@ -29,8 +29,8 @@ exports.create = async(req, res, next) => {
 
 exports.get = async(req, res, next) => {
     try {
-        const {people_id} = req.params;
-        let getOrder = await db.Order.find(people_id ? {people_id} : {});
+        const {user_id} = req.params;
+        let getOrder = await db.Order.find(user_id ? {user_id} : {});
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
@@ -40,7 +40,7 @@ exports.get = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     try {
         const {order_id} = req.params;
-        let getOrder = await db.Order.findById(order_id).populate("people_id").exec();
+        let getOrder = await db.Order.findById(order_id).populate("user_id").exec();
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
