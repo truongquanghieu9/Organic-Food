@@ -1,0 +1,9 @@
+module.exports.Error = require("./h-Error");
+module.exports.User = require("./h-User");
+module.exports.Role = require("./h-Role");
+module.exports.People = require("./h-People");
+module.exports.Category = require("./h-Category");
+module.exports.Image = require("./h-Image");
+module.exports.Food = require("./h-Food");
+module.exports.Review = require("./h-Review");
+module.exports.Order = require("./h-Order");
