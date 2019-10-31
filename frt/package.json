@@ -1,0 +1,59 @@
+{
+  "name": "frt",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chartist": "^0.11.4",
+    "classnames": "^2.2.6",
+    "history": "^4.10.1",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
+    "perfect-scrollbar": "^1.4.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-chartist": "^0.13.3",
+    "react-dom": "^16.11.0",
+    "react-google-maps": "^9.4.5",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "react-swipeable-views": "^0.13.3",
+    "redux": "^4.0.4"
+  },
+  "proxy": "http://localhost:8080",
+  "scripts": {
+    "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/ --watch --recursive",
+    "start": "set NODE_PATH=./src react-scripts start",
+    "start-dev": "concurrently \"npm run watch-css\" \"set NODE_PATH=./src && react-scripts start\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "lint:check": "eslint . --ext=js,jsx;  exit 0",
+    "lint:fix": "eslint . --ext=js,jsx --fix;  exit 0",
+    "build-package": "npm run build-package-css && babel src --out-dir dist"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "node-sass-chokidar": "^1.3.5",
+    "prettier": "^1.18.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
