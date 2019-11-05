@@ -6,7 +6,7 @@ const cors = require("cors");
 const mw = require("./middleware");
 const hdl = require("./handlers");
 const path = require('path');
-require("./seed")();
+// require("./seed")();
 
 app.use(express.static(path.join(__dirname, 'frt/build')));
 

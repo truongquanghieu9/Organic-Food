@@ -20,5 +20,6 @@ router.route("/:user_id/password").put(hdl.User.updatePassword);
 router.use("/:user_id/people", mw.User.isLogin, require("./r-People"));
 router.use("/:user_id/orders", require("./r-Order"));
 router.use("/:user_id/reviews", require("./r-Review"));
+router.use("/:user_id/categories", require("./r-Category"));
 
 module.exports = router;

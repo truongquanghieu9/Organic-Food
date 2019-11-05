@@ -5,11 +5,11 @@ const mw = require("../middleware");
 
 router.route("/")
 .get(hdl.Category.get)
-.post(mw.User.isCorrect, mw.User.isPermit, hdl.Category.create);
+.post(hdl.Category.create);
 
 router.route("/:category_id")
 .get(hdl.Category.getOne)
-.delete(mw.User.isCorrect, mw.User.isPermit, hdl.Category.remove)
-.put(mw.User.isCorrect, mw.User.isPermit, hdl.Category.update);
+.delete(hdl.Category.remove)
+.put(hdl.Category.update);
 
 module.exports = router;

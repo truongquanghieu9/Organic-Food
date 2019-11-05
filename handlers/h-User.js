@@ -96,8 +96,8 @@ exports.getOne = async(req, res, next) => {
             people_id = (await db.People.findOne({user_id: _id}).populate().exec())._id;
         }
 
-        // return email and phone for updating profile
-        return res.status(200).json({_id, viewname, email, avatar, role, active, phone, people_id});
+        // return email for updating profile
+        return res.status(200).json({_id, viewname, email, avatar, role, active, people_id});
     } catch(err) {
         return next(err);
     }
