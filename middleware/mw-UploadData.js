@@ -11,7 +11,7 @@ exports.getUploadData = async(req, res, next) => {
                     let image = await cloudinary.v2.uploader.upload(img.path);
                     let uploadImg = {
                         link: image.secure_url,
-                        cloudId: image.public_id
+                        cloud_id: image.public_id
                     }
                     let createdImg = await db.Image.create(uploadImg);
                     imgList.push(createdImg._id);

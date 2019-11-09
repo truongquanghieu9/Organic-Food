@@ -6,7 +6,7 @@ const {upload} = require("../utils/uploader");
 
 router.route("/")
 .get(hdl.Food.get)
-.post(upload.fields([{name: "images"}]), mw.Food.getUploadData, mw.User.isCorrect, mw.User.isPermit, hdl.Food.create);
+.post(upload.fields([{name: "images"}]), mw.Food.getUploadData, hdl.Food.create);
 
 router.route("/:food_id")
 .get(hdl.Food.getOne)

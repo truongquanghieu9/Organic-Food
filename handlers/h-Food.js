@@ -68,7 +68,7 @@ exports.wishlist = async(req, res, next) => {
 exports.update = async(req, res, next) => {
     try {
         const {food_id} = req.params;
-        let {name, desc, quantity, price, rePrice, review_id, image_id, category_id} = req.body;
+        let {name, desc, quantity, price, discount, review_id, image_id, category_id} = req.body;
         review_id = review_id.map(p => p._id);
         image_id = image_id.map(p => p._id);
 
@@ -106,7 +106,7 @@ exports.update = async(req, res, next) => {
         updateFood.desc = desc;
         updateFood.quantity = quantity;
         updateFood.price = price;
-        updateFood.rePrice = rePrice;
+        updateFood.discount = discount;
         updateFood.image_id = updateImage;
         updateFood.review_id = updateReview;
         updateFood.category_id = category_id;

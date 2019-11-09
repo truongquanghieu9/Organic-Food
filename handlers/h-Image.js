@@ -2,7 +2,9 @@ const db = require("../models");
 
 exports.create = async(req, res, next) => {
     try {
-        let newImage = await db.Image.create(req.body.image);
+        let newImage = await db.Image.create(req.body);
+        await newImage.save();
+
         return res.status(200).json(newImage);
     } catch(err) {
         return next(err);

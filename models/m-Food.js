@@ -11,7 +11,7 @@ const foodSchema = new mongoose.Schema({
     desc: String,
     quantity: Number,
     price: Number,
-    rePrice: Number,
+    discount: Number,
     review_id: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -41,10 +41,11 @@ foodSchema.pre("remove", async function(next){
         //     let foundReview = await db.Review.findOne({review_id: rev});
         //     if(foundReview) await foundReview.remove();
         // }
-        await db.Image.deleteMany({_id: {$in: this.image_id}});
-        await db.Review.deleteMany({_id: {$in: this.review_id}});
+        if(this.image_id) await db.Image.deleteMany({_id: {$in: this.image_id}});
+        if(this.review_id) await db.Review.deleteMany({_id: {$in: this.review_id}});
         // remove in OrderDetail
-        await assignId("OrderDetail", id, "food_id", false);
+        let foundFood = await db.OrderDetail.findOne({food_id: this._id});
+        if(foundFood) await assignId("OrderDetail", id, "food_id", false);
         // remove food in People wishlist
         let foundWishFood = await db.People.findOne({wishlist: this._id});
         if(foundWishFood) await spliceId("People", foundWishFood.wishlist, "food_id", this._id);

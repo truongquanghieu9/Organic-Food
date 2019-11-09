@@ -318,8 +318,7 @@
     display: flex;
     align-items: center; }
     .price-box > div > i {
-      margin-left: 15px;
-      margin-right: 20px;
+      margin: auto;
       font-size: 22px;
       color: gray; }
     .price-box > div div {
@@ -653,3 +652,71 @@
     color: #daac6f; }
   .status.stateSuccess {
     color: #8bc68b; }
+
+.boxUpload {
+  margin-top: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 0 1px #dddddd !important; }
+  .boxUpload .cbImg {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    background-color: #c7cdd0b0;
+    overflow: hidden; }
+    .boxUpload .cbImg > img {
+      max-height: 120px;
+      width: auto;
+      max-width: 230px; }
+    .boxUpload .cbImg > div {
+      border-top: 1px solid #e9e9e9;
+      color: #a4a4a4;
+      display: flex;
+      width: 100%;
+      padding: 10px;
+      padding-left: 15px;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px; }
+      .boxUpload .cbImg > div div {
+        display: flex;
+        align-items: center; }
+        .boxUpload .cbImg > div div p {
+          font-size: 12px;
+          margin: 0;
+          color: gray; }
+        .boxUpload .cbImg > div div i {
+          font-size: 17px;
+          margin: 0;
+          margin-right: 12px;
+          color: gray; }
+      .boxUpload .cbImg > div > i {
+        padding-left: 15px;
+        border-left: 1px solid #e9e9e9;
+        color: #87cb1696;
+        font-size: 15px;
+        margin-right: 10px;
+        cursor: pointer; }
+        .boxUpload .cbImg > div > i:hover {
+          color: #87cb16e0; }
+
+.colUploadBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  border: 5px dashed #bebbbb;
+  border-radius: 10px; }
+  .colUploadBox > i {
+    font-size: 50px;
+    color: #bebbbb;
+    margin-bottom: 20px; }
+  .colUploadBox > p {
+    color: #bebbbb; }

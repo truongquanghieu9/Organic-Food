@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-const PriceCheckbox = ({select, type, extra, choose, shouldDisable, ...props}) => {
+const PriceCheckbox = ({select, name, choose, shouldDisable, ...props}) => {
     const [disable, setDisable] = useState(-1);
 
     useEffect(() => {
@@ -15,8 +15,7 @@ const PriceCheckbox = ({select, type, extra, choose, shouldDisable, ...props}) =
             <div>
                 <i className="fas fa-tags"></i>
                 <div>
-                    <p>{type}</p>
-                    <small>Extra - {extra} VND</small>
+                    <p>{name}</p>
                 </div>
             </div>
             {(disable === 0 && !select) && <i className="fas fa-circle-notch"></i>}

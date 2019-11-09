@@ -2,6 +2,7 @@ import DashboardContain from "contains/views/Dashboard";
 import ActivateContain from "contains/views/Activate";
 import ActivatedContain from "contains/views/Activated";
 import ManageCategoryContain from "contains/views/ManageCategory";
+import ManageFoodContain from "contains/views/ManageFood";
 import ChangePasswordContain from "contains/views/ChangePassword";
 import ProfileContain from "contains/views/Profile";
 import Contact from "contains/views/Contact";
@@ -10,6 +11,7 @@ import Login from "components/views/Login";
 
 import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
+import Food from "@material-ui/icons/Spa";
 
 import dashboard from "./display/Dashboard";
 import login from "./display/Login";
@@ -17,6 +19,7 @@ import register from "./display/Register";
 import activate from "./display/Activate";
 import activated from "./display/Activated";
 import manage_category from "./display/ManageCategory";
+import manage_food from "./display/ManageFood";
 import change_password from "./display/ChangePassword";
 import profile from "./display/Profile";
 import contact_User from "./display/Contact";
@@ -38,6 +41,14 @@ const sidebar = [
         Component: ManageCategoryContain,
         icon: Category,
         display: manage_category
+    },
+    {
+        path: "/food",
+        access: ["ownerAccess"],
+        name: "Manage Foods",
+        Component: ManageFoodContain,
+        icon: Food,
+        display: manage_food
     }
 ]
 
