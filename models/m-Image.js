@@ -14,7 +14,7 @@ const imageSchema = new mongoose.Schema({
 
 imageSchema.pre("remove", async function(next) {
 	try {
-		cloudinary.v2.uploader.destroy(this.image.cloud_id);
+		cloudinary.v2.uploader.destroy(this.cloud_id);
 		return next();
 	} catch(err) {
 		return next(err);

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import ChangePassword from "components/views/ChangePassword";
-import {apiCall} from "services/api";
+import {apiCall} from "services/apiCall";
 import {connect} from "react-redux";
 import withNoti from "hocs/withNoti";
 

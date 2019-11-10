@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Activate from "components/views/Activate";
-import {apiCall} from "services/api";
+import {apiCall} from "services/apiCall";
 import {activateUser} from "store/actions/user";
 import {connect} from "react-redux";
 

@@ -1,5 +1,5 @@
 import {ADD_USER} from "../actionTypes";
-import {apiCall, setTokenHeader} from "services/api";
+import {apiCall, setTokenHeader} from "services/apiCall";
 import {setError} from "./error";
 
 export const setUser = user => ({type: ADD_USER, user});

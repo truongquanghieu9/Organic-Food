@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useCallback} from "react";
 import ManageFood from "components/views/ManageFood";
-import {apiCall, apiFdCall} from "services/api";
+import {apiCall, apiFdCall} from "services/apiCall";
 import {connect} from "react-redux";
 import withNoti from "hocs/withNoti";
 

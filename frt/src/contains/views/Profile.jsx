@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Profile from "components/views/Profile";
-import {apiCall} from "services/api";
+import {apiCall} from "services/apiCall";
 import {connect} from "react-redux";
 import moment from "moment";
 import withNoti from "hocs/withNoti";

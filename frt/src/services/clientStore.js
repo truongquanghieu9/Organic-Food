@@ -1,7 +1,6 @@
 import {setUser} from "../store/actions/user";
-import {setTokenHeader} from "./api";
+import {setTokenHeader, apiCall} from "./apiCall";
 import jwtDecode from "jwt-decode";
-import {apiCall} from "services/api";
 
 export async function checkStore(store){
     try {
