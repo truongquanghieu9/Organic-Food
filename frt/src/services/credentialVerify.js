@@ -19,8 +19,13 @@ function getAccess({code = "002"} = {}) {
     }
 }
 
+// function getDirectPath({code = "002"} = {}) {
+//     if(code === "000" || code === "001") return "/dashboard";
+//     return "/login";
+// }
 function getDirectPath({code = "002"} = {}) {
-    if(code === "000" || code === "001") return "/dashboard";
+    if(code === "000") return "/app";
+    if(code === "001" || code === "002") return "/home";
     return "/login";
 }
 
