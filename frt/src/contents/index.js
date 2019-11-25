@@ -13,6 +13,8 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import Food from "@material-ui/icons/Spa";
 
+import HomePage from "components/Page/HomePage";
+
 import dashboard from "./display/Dashboard";
 import login from "./display/Login";
 import register from "./display/Register";
@@ -27,15 +29,15 @@ import contact_User from "./display/Contact";
 
 const sidebar = [
     {
-        path: "/dashboard",
-        access: ["ownerAccess", "peopleAccess"],
+        path: "/app/dashboard",
+        access: ["ownerAccess"],
         name: "Dashboard",
         Component: DashboardContain,
         icon: Dashboard,
         display: dashboard
     },
     {
-        path: "/category",
+        path: "/app/category",
         access: ["ownerAccess"],
         name: "Manage Categories",
         Component: ManageCategoryContain,
@@ -43,7 +45,7 @@ const sidebar = [
         display: manage_category
     },
     {
-        path: "/food",
+        path: "/app/food",
         access: ["ownerAccess"],
         name: "Manage Foods",
         Component: ManageFoodContain,
@@ -97,6 +99,11 @@ const routes = [
         name: "Send mail to user",
         Component: Contact,
         display: contact_User
+    },
+    {
+        path: "/",
+        access: ["guestAccess", "peopleAccess"],
+        Component: HomePage,
     }
 ]
 

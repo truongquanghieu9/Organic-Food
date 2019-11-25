@@ -19,14 +19,16 @@ function getAccess({code = "002"} = {}) {
     }
 }
 
-// function getDirectPath({code = "002"} = {}) {
-//     if(code === "000" || code === "001") return "/dashboard";
-//     return "/login";
+// function getDirectPath({code = "000"} = {}) {
+//     if(code === "001" || code === "002") return "/";
+//     return "/app/dashboard";
 // }
+
 function getDirectPath({code = "002"} = {}) {
-    if(code === "000") return "/app";
-    if(code === "001" || code === "002") return "/home";
-    return "/login";
+    console.log(code);
+    if(code === "000") return "/app/dashboard";
+    if(code === "001") return "/";
+    return "/";
 }
 
 function isPermit({role = "002"} = {}){
