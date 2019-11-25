@@ -29,21 +29,21 @@ class OurProductsContainer extends Component {
         return result
     }
 
-    showOurProducts = (products) => {
-        let result = [];
-        if (products.length > 0) {
-            let rand = Math.floor(Math.random() * ((products.length - 6) - 8)) + 8;
+    // showOurProducts = (products) => {
+    //     let result = [];
+    //     if (products.length > 0) {
+    //         let rand = Math.floor(Math.random() * ((products.length - 6) - 8)) + 8;
 
-            for (let i = rand; i > rand - 8; i--) {
-                result.push(<OurProductsItem key={i} product={products[i]}
-                    handlAddToCart={this.props.handlAddToCart}
-                    showRating={this.showRating}
-                />)
-            }
-        }
+    //         for (let i = rand; i > rand - 8; i--) {
+    //             result.push(<OurProductsItem key={i} product={products[i]}
+    //                 handlAddToCart={this.props.handlAddToCart}
+    //                 showRating={this.showRating}
+    //             />)
+    //         }
+    //     }
 
-        return result;
-    }
+    //     return result;
+    // }
 
     rand = (products) => {
         let prod = [];

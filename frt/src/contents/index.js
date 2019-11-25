@@ -13,6 +13,8 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import Food from "@material-ui/icons/Spa";
 
+import ShopDetailContain from "contains/Shop/ShopDetailContainer";
+import ShopContain from "contains/Shop/ShopContainer";
 import HomePage from "components/Page/HomePage";
 
 import dashboard from "./display/Dashboard";
@@ -99,6 +101,16 @@ const routes = [
         name: "Send mail to user",
         Component: Contact,
         display: contact_User
+    },
+    {
+        path: "/shop/:id",
+        access: ["guestAccess", "peopleAccess"],
+        Component: ShopDetailContain
+    },
+    {
+        path: "/shop",
+        access: ["guestAccess", "peopleAccess"],
+        Component: ShopContain
     },
     {
         path: "/",
