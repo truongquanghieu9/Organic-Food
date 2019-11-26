@@ -160,9 +160,8 @@ input[type=number] {
 }
 .subscribe__form .subscribe__sub .subscribe__btn {
   position: absolute;
-  top: 6%;
-  right: 6%;
-  padding: 1.4% 6%;
+  right: 5%;
+  padding: 4.2% 8%;
   font-size: 1.5rem;
   background-color: #7dc641;
   border: none;
@@ -387,7 +386,7 @@ input[type=number] {
   color: #7dc641;
 }
 .header .header__middle {
-  padding: 20px 0;
+  padding: 18px 0;
 }
 .header .header__middle .logo__wrapper {
   padding-left: 0;
@@ -405,7 +404,7 @@ input[type=number] {
 .header .header__middle .search__wrapper .search__button input {
   position: absolute;
   top: 5%;
-  right: 4%;
+  right: 10%;
   height: 38px;
   width: 38px;
   background: url("/img/image.png") -56px -8px;
@@ -2634,7 +2633,7 @@ input[type=number] {
   position: relative;
   border: 1px solid #ebebeb;
   width: 80%;
-  padding: 5% 0;
+  padding: 2% 0;
 }
 .shop__item .item__image .product__image img {
   width: 100%;
@@ -2663,7 +2662,7 @@ input[type=number] {
 .shop__item .item__image .product__image .btn__play {
   position: absolute;
   right: 5%;
-  bottom: 2%;
+  bottom: 10%;
   font-size: 2rem;
 }
 .shop__item .item__image .product__image .btn__play i {

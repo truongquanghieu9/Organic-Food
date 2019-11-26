@@ -198,29 +198,4 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount}) => (
     </Fragment>
 )
 
-// class Header extends Component {
-
-//     handleDeleteCart = id => {
-//         this.props.handleDeleteCart(id);
-//     }
-
-//     showTotalAmount = cart => {
-//         let total = 0;
-//         for (let item of cart) {
-//             total += (item.product.newPrice * item.quantity);
-//         }
-//         return total;
-//     }
-
-//     render() {
-
-//         let { cart, showHeaderCartItem } = this.props;
-
-//         return (
-
-
-//         );
-//     }
-// }
-
 export default Header;

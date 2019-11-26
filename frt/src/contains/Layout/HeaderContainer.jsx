@@ -67,6 +67,13 @@ const mapStateToProp = state => {
     }
 }
 
+function mapState({state, user}) {
+    return {
+        cart: state.cart,
+        user: user.data
+    }
+}
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
         handleDeleteCart: id => {

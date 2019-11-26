@@ -12,7 +12,7 @@ const DealItem = ({ product,showRating }) => (
                 </div>
                 <div className="col-md-7 px-0">
                     <div className="products__info">
-                        <Link to={`/shop/${product.name}/${product.id}`}>{product.name}</Link>
+                        <Link to={`/shop/${product.id}`}>{product.name}</Link>
                         <div className="rating">
 
                             {showRating(product.rating)}

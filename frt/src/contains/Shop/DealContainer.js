@@ -108,6 +108,13 @@ const mapStateToProps = state => {
     }
 }
 
+function mapState({...user}) {
+    return {
+        products: user.products,
+        user: user.data
+    }
+}
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
         handlAddToCart: product => {
@@ -116,4 +123,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DealContainer);
+export default connect(mapState, mapDispatchToProps)(DealContainer);

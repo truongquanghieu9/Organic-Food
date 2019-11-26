@@ -30,7 +30,7 @@ const DealItemCarousel = ({product, showRating, handlAddToCart}) => (
                 </div>
             </div>
             <div className="products__info">
-                <Link to={`/shop/${product.name}/${product.id}`}>{product.name}</Link>
+                <Link to={`/shop/${product.id}`}>{product.name}</Link>
                 <div className="rating">
 
                     {showRating(product.rating)}

@@ -13,7 +13,7 @@ class Banner extends Component {
                                     <img src="/img/text-banner-1-organic.png.png" alt="text-banner-1-organic" />
                                     <p>Our grantees and partners generosity truth, prevention nutrition involvement Ford Foundation.
                                       Enabler agenda results global leaders change.</p>
-                                    <button className="btn__shopnow">SH<i className="fas fa-circle-notch fa-spin" />P NOW</button>
+                                    <a href={`/shop`} className="btn__shopnow">SH<i className="fas fa-circle-notch fa-spin" />P NOW</a>
                                 </div>
                             </div>
                         </div>

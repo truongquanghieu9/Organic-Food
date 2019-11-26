@@ -1,11 +1,16 @@
 import React, { Fragment } from 'react';
 
-import HeaderNewContainer from 'contains/Layout/HeaderContainer';
+import HeaderContainer from 'contains/Layout/HeaderContainer';
 import Footer from 'components/Shop/Footer';
 
+import {connect} from "react-redux";
+import {getAccess} from "services/credentialVerify";
+// import { actFetchProductsRequest } from 'store/actions/shop';
+
 const ShopLayout = ({...props}) => (
+    
     <Fragment>
-        <HeaderNewContainer  />
+        <HeaderContainer/>
             <div>
                 {props.children}
             </div>
@@ -13,4 +18,37 @@ const ShopLayout = ({...props}) => (
     </Fragment>
 );
 
-export default ShopLayout;
+// class ShopLayout extends Component {
+//     componentDidMount() {
+//         this.props.handleFetchProductsRequest();
+//         console.log("run");
+//     }
+
+//     render() {
+//         return (
+//             <Fragment>
+//                 <HeaderContainer/>
+//                     <div>
+//                         {this.props.children}
+//                     </div>
+//                 <Footer />
+//             </Fragment>
+//         )
+//     }
+// }
+
+// const mapDispatchToProps = (dispatch, props) => {
+//     return {
+//         handleFetchProductsRequest: () => {
+//             dispatch(actFetchProductsRequest());
+//         }
+//     }
+// }
+
+function mapState({user}) {
+    return {
+        isPermit: getAccess(user.data.role)
+    }
+}
+
+export default connect(mapState, null)(ShopLayout);

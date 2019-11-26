@@ -15,10 +15,9 @@ class ShopContainer extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.handleFetchProductsRequest();
-        console.log("run");
-    }
+    // componentDidMount() {
+    //     this.props.handleFetchProductsRequest();
+    // }
 
     filterProducts = (products) => {
         return products.filter((product) => {
@@ -109,15 +108,23 @@ const mapStateToProps = state => {
     }
 }
 
+function mapState({...user}) {
+    console.log(user);
+    return {
+        products: user.products,
+        user: user.data
+    }
+}
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        handleFetchProductsRequest: () => {
-            dispatch(actFetchProductsRequest());
-        },
+        // handleFetchProductsRequest: () => {
+        //     dispatch(actFetchProductsRequest());
+        // },
         handlAddToCart: product => {
             dispatch(actAddToCart(product, 1));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopContainer);
+export default connect(mapState, mapDispatchToProps)(ShopContainer);

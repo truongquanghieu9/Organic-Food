@@ -106,6 +106,7 @@ const routes = [
         Component: Contact,
         display: contact_User
     },
+    
     {
         path: "/shop/:id",
         access: ["guestAccess", "peopleAccess"],
@@ -139,7 +140,7 @@ const routes = [
     {
         path: "/",
         access: ["guestAccess", "peopleAccess"],
-        Component: HomePage,
+        Component: HomePage
     }
 ]
 

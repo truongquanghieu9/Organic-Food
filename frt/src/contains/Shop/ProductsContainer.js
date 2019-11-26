@@ -26,7 +26,6 @@ class ProductsContainer extends Component {
     render() {
 
         let { products } = this.props;
-        console.log("run");
         return (
             <Fragment>
                 <section className="products">
@@ -67,6 +66,13 @@ const mapStateToProps = state => {
     }
 }
 
+function mapState({...user}) {
+    return {
+        products: user.products,
+        user: user.data
+    }
+}
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
 
@@ -76,4 +82,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);
+export default connect(mapState, mapDispatchToProps)(ProductsContainer);

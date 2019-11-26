@@ -8,9 +8,9 @@ import { actFetchProductsRequest, actAddToCart } from  'store/actions/shop';
 
 class OurProductsContainer extends Component {
 
-    componentDidMount() {
-        this.props.handleFetchProductsRequest();
-    }
+    // componentDidMount() {
+    //     this.props.handleFetchProductsRequest();
+    // }
 
     showRating = rating => {
 
@@ -116,19 +116,26 @@ class OurProductsContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+    }
+}
+
+function mapState({...user}) {
+    return {
+        products: user.products,
+        user: user.data
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        handleFetchProductsRequest: () => {
-            dispatch(actFetchProductsRequest());
-        },
+        // handleFetchProductsRequest: () => {
+        //     dispatch(actFetchProductsRequest());
+        // },
         handlAddToCart: product => {
             dispatch(actAddToCart(product, 1));
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OurProductsContainer);
+export default connect(mapState, mapDispatchToProps)(OurProductsContainer);

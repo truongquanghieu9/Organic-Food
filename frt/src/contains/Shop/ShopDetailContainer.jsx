@@ -109,6 +109,13 @@ const mapStateToProps = state => {
     }
 }
 
+function mapState({...user}) {
+    return {
+        products: user.products,
+        user: user.data
+    }
+}
+
 const mapDispatchToProps = (dispatch, props) => {
     return {
         handleFetchProductsRequest: () => {
@@ -123,4 +130,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopDetailContainer);
+export default connect(mapState, mapDispatchToProps)(ShopDetailContainer);
