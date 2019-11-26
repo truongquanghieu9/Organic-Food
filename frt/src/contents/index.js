@@ -13,8 +13,12 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import Food from "@material-ui/icons/Spa";
 
+import CartContain from "contains/Shop/CartContainer";
 import ShopDetailContain from "contains/Shop/ShopDetailContainer";
 import ShopContain from "contains/Shop/ShopContainer";
+import Portfolio from "contains/Shop/PortfolioContainer";
+import Blog from "components/Shop/Blog";
+import Account from "components/Shop/Account";
 import HomePage from "components/Page/HomePage";
 
 import dashboard from "./display/Dashboard";
@@ -111,6 +115,26 @@ const routes = [
         path: "/shop",
         access: ["guestAccess", "peopleAccess"],
         Component: ShopContain
+    },
+    {
+        path: "/cart",
+        access: ["guestAccess", "peopleAccess"],
+        Component: CartContain
+    },
+    {
+        path: "/blog",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Blog
+    },
+    {
+        path: "/account",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Account
+    },
+    {
+        path: "/portfolio",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Portfolio
     },
     {
         path: "/",
