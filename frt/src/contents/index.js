@@ -13,6 +13,14 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import Food from "@material-ui/icons/Spa";
 
+import CartContain from "contains/Shop/CartContainer";
+import ShopDetailContain from "contains/Shop/ShopDetailContainer";
+import ShopContain from "contains/Shop/ShopContainer";
+import Portfolio from "contains/Shop/PortfolioContainer";
+import Blog from "components/Shop/Blog";
+import Account from "components/Shop/Account";
+import HomePage from "components/Page/HomePage";
+
 import dashboard from "./display/Dashboard";
 import login from "./display/Login";
 import register from "./display/Register";
@@ -27,15 +35,15 @@ import contact_User from "./display/Contact";
 
 const sidebar = [
     {
-        path: "/dashboard",
-        access: ["ownerAccess", "peopleAccess"],
+        path: "/app/dashboard",
+        access: ["ownerAccess"],
         name: "Dashboard",
         Component: DashboardContain,
         icon: Dashboard,
         display: dashboard
     },
     {
-        path: "/category",
+        path: "/app/category",
         access: ["ownerAccess"],
         name: "Manage Categories",
         Component: ManageCategoryContain,
@@ -43,7 +51,7 @@ const sidebar = [
         display: manage_category
     },
     {
-        path: "/food",
+        path: "/app/food",
         access: ["ownerAccess"],
         name: "Manage Foods",
         Component: ManageFoodContain,
@@ -97,6 +105,42 @@ const routes = [
         name: "Send mail to user",
         Component: Contact,
         display: contact_User
+    },
+    
+    {
+        path: "/shop/:id",
+        access: ["guestAccess", "peopleAccess"],
+        Component: ShopDetailContain
+    },
+    {
+        path: "/shop",
+        access: ["guestAccess", "peopleAccess"],
+        Component: ShopContain
+    },
+    {
+        path: "/cart",
+        access: ["guestAccess", "peopleAccess"],
+        Component: CartContain
+    },
+    {
+        path: "/blog",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Blog
+    },
+    {
+        path: "/account",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Account
+    },
+    {
+        path: "/portfolio",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Portfolio
+    },
+    {
+        path: "/",
+        access: ["guestAccess", "peopleAccess"],
+        Component: HomePage
     }
 ]
 
