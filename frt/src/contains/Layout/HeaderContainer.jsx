@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import HeaderNew from 'components/Shop/HeaderNew';
 
 import { actDeleteCart } from  'store/actions/shop';
+import {logOut} from "store/actions/user";
 
 const CartItem = ({item, handleDeleteCart}) => {
     return (
@@ -49,10 +50,11 @@ class HeaderCartContainer extends Component {
     }
 
     render() {
-        let { cart } = this.props;
+        let { cart, user } = this.props;
         return (
             <HeaderNew
                 {...this.props}
+                user={user}
                 cart={cart}
                 showHeaderCartItem={this.showHeaderCartItem(cart)}
                 showTotalAmount={this.showTotalAmount}
@@ -67,10 +69,10 @@ const mapStateToProp = state => {
     }
 }
 
-function mapState({state, user}) {
+function mapState({...user}) {
     return {
-        cart: state.cart,
-        user: user.data
+        cart: user.cart,
+        user: user.user.data
     }
 }
 
@@ -82,4 +84,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapStateToProp, mapDispatchToProps)(HeaderCartContainer);
+export default connect(mapState, {mapDispatchToProps, logOut})(HeaderCartContainer);

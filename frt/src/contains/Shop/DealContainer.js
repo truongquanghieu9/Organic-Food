@@ -5,9 +5,16 @@ import Deal from 'components/Shop/Deal';
 import DealItemCarouselNew from 'components/Shop/DealItemCarouselNew';
 import DealItemNew from 'components/Shop/DealItemNew';
 
+import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class DealContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: productList
+        }
+    }
 
     handlAddToCart = product => {
         this.props.handlAddToCart(product);
@@ -38,7 +45,7 @@ class DealContainer extends Component {
 
     render() {
 
-        let { products } = this.props;
+        let { products } = this.state;
         let filterProducts = this.filterProducts(products);
         let prod = [];
         if(products.length > 0) {
@@ -111,7 +118,7 @@ const mapStateToProps = state => {
 function mapState({...user}) {
     return {
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 

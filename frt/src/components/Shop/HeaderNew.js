@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Menu from './Menu';
 
-const Header = ({cart, showHeaderCartItem, showTotalAmount}) => (
+const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
     <Fragment>
         {/* BEGIN HEADER */}
         <header className="header">
@@ -46,12 +46,7 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount}) => (
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="#1"><i className="far fa-heart" /> Wishlist (0)</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <div className="login_signup">
-                                            <i className="far fa-user" />
-                                            <a className="nav-link" href="#1"> Login</a>/<a className="nav-link" href="#1"> Sign up</a>
-                                        </div>
+
                                         <div className="form__item__wrapper">
                                             <form action="#1" className="form__item">
                                                 <div className="form-group">
@@ -67,6 +62,13 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount}) => (
                                                     <a href="#1">Forgot Your Password ?</a>
                                                 </div>
                                             </form>
+                                        </div>
+                                    </li>
+                                    <li className="nav-item">
+                                        <div className="login_signup">
+                                            <i className="far fa-user" />
+                                                <b className="nav-link" > {user.viewname} </b>|
+                                                <button className="blog__button ml-2" onClick={props.logOut}> Logout</button>
                                         </div>
                                     </li>
                                 </ul>
@@ -126,7 +128,7 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount}) => (
                                                 <span className="amount">${showTotalAmount(cart)}</span>
                                             </div>
                                             <div className="cart__button">
-                                                <button className="blog__button__green"><Link to='/cart'>VIEW CART</Link></button>
+                                                <button className="blog__button__green"><a href='/cart'>VIEW CART</a></button>
                                                 <button className="blog__button__inverse"><Link to="/">CHECKOUT</Link></button>
                                             </div>
                                         </div>

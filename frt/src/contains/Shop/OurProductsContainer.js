@@ -4,13 +4,27 @@ import { connect } from 'react-redux';
 import OurProducts from 'components/Shop/OurProducts';
 import OurProductsItem from 'components/Shop/OurproductsItem';
 
+import {productList} from "services/testShopData/FakeData"
 import { actFetchProductsRequest, actAddToCart } from  'store/actions/shop';
 
 class OurProductsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: productList
+        }
+    }
 
-    // componentDidMount() {
-    //     this.props.handleFetchProductsRequest();
-    // }
+    async componentDidMount() {
+        try{
+            // let products= this.props.handleFetchProductsRequest();
+            // this.setState({
+            //     products
+            // });
+        } catch(err){
+            console.log(err);
+        }
+    }
 
     showRating = rating => {
 
@@ -28,22 +42,6 @@ class OurProductsContainer extends Component {
         }
         return result
     }
-
-    // showOurProducts = (products) => {
-    //     let result = [];
-    //     if (products.length > 0) {
-    //         let rand = Math.floor(Math.random() * ((products.length - 6) - 8)) + 8;
-
-    //         for (let i = rand; i > rand - 8; i--) {
-    //             result.push(<OurProductsItem key={i} product={products[i]}
-    //                 handlAddToCart={this.props.handlAddToCart}
-    //                 showRating={this.showRating}
-    //             />)
-    //         }
-    //     }
-
-    //     return result;
-    // }
 
     rand = (products) => {
         let prod = [];
@@ -85,7 +83,7 @@ class OurProductsContainer extends Component {
 
     render() {
 
-        let { products } = this.props;
+        let { products } = this.state;
         // take 8 product
         let rands = this.rand(products);
 
@@ -123,7 +121,7 @@ const mapStateToProps = state => {
 function mapState({...user}) {
     return {
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 

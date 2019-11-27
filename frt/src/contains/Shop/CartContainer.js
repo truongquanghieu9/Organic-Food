@@ -52,7 +52,7 @@ const mapStateToProps = ({...user}) => {
     return {
         cart: user.cart,
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 

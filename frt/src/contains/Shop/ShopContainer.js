@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Shop from 'components/Shop/Shop';
 
+import {productList} from "services/testShopData/FakeData"
 import { actAddToCart, actFetchProductsRequest } from 'store/actions/shop';
 
 class ShopContainer extends Component {
@@ -11,13 +12,14 @@ class ShopContainer extends Component {
         super(props);
         this.state = {
             currentPage: 1,
-            productsPerPage: 12
+            productsPerPage: 12,
+            products: productList
         }
     }
 
-    // componentDidMount() {
-    //     this.props.handleFetchProductsRequest();
-    // }
+    componentDidMount() {
+        // this.props.handleFetchProductsRequest();
+    }
 
     filterProducts = (products) => {
         return products.filter((product) => {
@@ -68,8 +70,8 @@ class ShopContainer extends Component {
 
     render() {
 
-        let { products, handlAddToCart } = this.props;
-        let { currentPage, productsPerPage } = this.state;
+        let { handlAddToCart } = this.props;
+        let { currentPage, productsPerPage, products } = this.state;
 
         const pageNumbers = []
 
@@ -109,10 +111,9 @@ const mapStateToProps = state => {
 }
 
 function mapState({...user}) {
-    console.log(user);
     return {
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 

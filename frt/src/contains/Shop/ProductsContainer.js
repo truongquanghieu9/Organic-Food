@@ -3,9 +3,16 @@ import { connect } from 'react-redux';
 
 import Foods from 'components/Shop/Foods';
 
+import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class ProductsContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: productList
+        }
+    }
 
     showRating = rating => {
         let result = [];
@@ -25,7 +32,7 @@ class ProductsContainer extends Component {
 
     render() {
 
-        let { products } = this.props;
+        let { products } = this.state;
         return (
             <Fragment>
                 <section className="products">
@@ -69,7 +76,7 @@ const mapStateToProps = state => {
 function mapState({...user}) {
     return {
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 

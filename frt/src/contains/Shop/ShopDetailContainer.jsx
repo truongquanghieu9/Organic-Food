@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import ShopDetail from 'components/Shop/ShopDetail';
 
+import {productList} from "services/testShopData/FakeData"
 import { actAddToCart, actMessage, actFetchProductsRequest } from 'store/actions/shop';
 
 class ShopDetailContainer extends Component {
@@ -11,12 +12,13 @@ class ShopDetailContainer extends Component {
         super(props);
         this.state = {
             quantity: 1,
-            isShowMessage: false
+            isShowMessage: false,
+            products: productList
         }
     }
 
     async componentDidMount() {
-        this.props.handleFetchProductsRequest();
+        // this.props.handleFetchProductsRequest();
     }
 
     handleChange = (e) => {
@@ -68,7 +70,8 @@ class ShopDetailContainer extends Component {
     }
     
     getProduct = () => {
-        let {products, match} = this.props;
+        let { match} = this.props;
+        let {products} = this.state;
         if(products.length > 0 && match.params.id !== 0) {
             return products.find(food => food.id ==  match.params.id);
         }
@@ -76,8 +79,8 @@ class ShopDetailContainer extends Component {
 
     render() {
         console.log(this.props.match.params);
-        let { products } = this.props;
-        let { quantity, isShowMessage} = this.state;
+        // let { products } = this.props;
+        let { quantity, isShowMessage, products} = this.state;
 
         return (
             <Fragment>
@@ -112,15 +115,15 @@ const mapStateToProps = state => {
 function mapState({...user}) {
     return {
         products: user.products,
-        user: user.data
+        user: user.user.data
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        handleFetchProductsRequest: () => {
-            dispatch(actFetchProductsRequest());
-        },
+        // handleFetchProductsRequest: () => {
+        //     dispatch(actFetchProductsRequest());
+        // },
         handlAddToCart: (product, quantity) => {
             dispatch(actAddToCart(product, quantity));
         },

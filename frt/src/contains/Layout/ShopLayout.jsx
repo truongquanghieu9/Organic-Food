@@ -47,7 +47,7 @@ const ShopLayout = ({...props}) => (
 
 function mapState({user}) {
     return {
-        isPermit: getAccess(user.data.role)
+        isPermit: getAccess(user.data.role),
     }
 }
 
