@@ -1,8 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const ShopItem = ({product, handlAddToCart, showRating}) => (
-    product.map((product, i) => (
+const ShopItem = ({item, handlAddToCart, showRating}) => (
+    item.map((product, i) => (
         <div className="col-md-3 pt-5" key={i}>
             <div className="item">
                 <div className="products__thumbnail">

@@ -3,42 +3,15 @@ import { connect } from 'react-redux';
 
 import HeaderNew from 'components/Shop/HeaderNew';
 
-import { actDeleteCart } from  'store/actions/shop';
-import {logOut} from "store/actions/user";
-
-const CartItem = ({item, handleDeleteCart}) => {
-    return (
-        <div className="cart__item d-flex align-items-center">
-            <img src={item.product.src1} alt={item.product.name} />
-            <div className="cart__info">
-                <h6>{item.product.name}</h6>
-                <div>{item.quantity} x <span className="amount">{`$ ${item.product.newPrice}.00`}</span></div>
-            </div>
-            <button onClick={() => handleDeleteCart(item.product.id)} className="remove btn__shopnow">×</button>
-        </div>
-    );
-}
+import { actDeleteCart, actDeleteHeaderCart } from  'store/actions/shop';
+import { logOut } from "store/actions/user";
 
 class HeaderCartContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // cart: []
+            // cart: this.props.cart
         }
-    }
-
-    showHeaderCartItem = (cart) => {
-        let result = null;
-
-        if (cart.length > 0) {
-            result = cart.map((item, index) => {
-                return <CartItem key={index} item={item}
-                    handleDeleteCart={this.props.handleDeleteCart}
-                />
-            });
-        }
-
-        return result;
     }
 
     showTotalAmount = (cart) => {
@@ -50,22 +23,16 @@ class HeaderCartContainer extends Component {
     }
 
     render() {
-        let { cart, user } = this.props;
+        let { cart, user, actDeleteHeaderCart } = this.props;
         return (
             <HeaderNew
                 {...this.props}
                 user={user}
                 cart={cart}
-                showHeaderCartItem={this.showHeaderCartItem(cart)}
+                handleDeleteCart={actDeleteHeaderCart}
                 showTotalAmount={this.showTotalAmount}
             />
         );
-    }
-}
-
-const mapStateToProp = state => {
-    return {
-        cart: state.cart
     }
 }
 
@@ -84,4 +51,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapState, {mapDispatchToProps, logOut})(HeaderCartContainer);
+export default connect(mapState, {actDeleteHeaderCart, logOut})(HeaderCartContainer);

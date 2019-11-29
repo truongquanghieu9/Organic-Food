@@ -34,7 +34,7 @@ const Shop = ({products, currentProduct, pageNumbers, renderProduct, renderPageN
 
                         {/* {renderProduct(currentProduct)} */}
                         <ShopItem
-                            product = {currentProduct}
+                            item = {currentProduct}
                             handlAddToCart={handlAddToCart}
                             showRating={showRating}
                         />

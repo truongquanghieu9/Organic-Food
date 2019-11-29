@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Menu from './Menu';
 
-const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
+const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
     <Fragment>
         {/* BEGIN HEADER */}
         <header className="header">
@@ -71,7 +71,7 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
                                                 {
                                                     user.viewname 
                                                     ? <button className="blog__button ml-2 pl-2 pr-2" onClick={props.logOut}>Logout</button>
-                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login </a> 
+                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login / Register </a> 
                                                 }
                                         </div>
                                     </li>
@@ -122,7 +122,18 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
                                         {/* Begin HeaderCart */}
                                         <div className="cart__items">
                                             {/* Begin HeaderCartItem */}
-                                                {showHeaderCartItem}
+                                            {
+                                                cart.map((item, i) => (
+                                                    <div className="cart__item d-flex align-items-center" key={i}>
+                                                        <img src={item.product.src1} alt={item.product.name} />
+                                                        <div className="cart__info">
+                                                            <h6>{item.product.name}</h6>
+                                                            <div>{item.quantity} x <span className="amount">{`$ ${item.product.newPrice}.00`}</span></div>
+                                                        </div>
+                                                        <button className="remove btn__shopnow" onClick={() => handleDeleteCart(item.product.id)}>×</button>
+                                                    </div>
+                                                ))
+                                            }
                                             {/* End HeaderCartItem */}
                                         </div>
                                         {/* End HeaderCart */}

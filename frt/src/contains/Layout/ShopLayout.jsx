@@ -18,6 +18,14 @@ const ShopLayout = ({...props}) => (
     </Fragment>
 );
 
+function mapState({user}) {
+    return {
+        isPermit: getAccess(user.data.role),
+    }
+}
+
+export default connect(mapState, null)(ShopLayout);
+
 // class ShopLayout extends Component {
 //     componentDidMount() {
 //         this.props.handleFetchProductsRequest();
@@ -45,10 +53,3 @@ const ShopLayout = ({...props}) => (
 //     }
 // }
 
-function mapState({user}) {
-    return {
-        isPermit: getAccess(user.data.role),
-    }
-}
-
-export default connect(mapState, null)(ShopLayout);

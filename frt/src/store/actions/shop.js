@@ -10,6 +10,12 @@ export const actFetchProductsRequest = () => {
     }
 }
 
+export const actDeleteHeaderCart = (id) => {
+    return dispatch => (
+        dispatch(actDeleteCart(id))
+    )
+}
+
 export const actFetchProducts = products => {
     return {
         type: types.FETCH_PRODUCTS,
