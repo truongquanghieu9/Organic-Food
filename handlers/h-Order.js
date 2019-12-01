@@ -16,9 +16,6 @@ exports.create = async(req, res, next) => {
             });
         }
 
-        // Check pay_type and make request
-        // if(order.pay_type === "OP")
-
         // send mail to customer
 
         return res.status(200).json(newOrder);

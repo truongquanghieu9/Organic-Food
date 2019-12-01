@@ -5,7 +5,7 @@ const DealItemCarousel = ({product, showRating, handlAddToCart}) => (
     <Fragment>
         <div className="carousel__item">
             <div className="products__thumbnail">
-                <img src={product.src1} alt={product.name} />
+                <img src={product.image_id[0].link} alt="" />
                 <img src={product.src2} className="product_image_back" alt={product.name} />
                 <div className="products__sale">
                     <span className="onsale">SALE</span>
@@ -30,14 +30,14 @@ const DealItemCarousel = ({product, showRating, handlAddToCart}) => (
                 </div>
             </div>
             <div className="products__info">
-                <Link to={`/shop/${product.id}`}>{product.name}</Link>
+                <Link to={`/shop/${product._id}`}>{product.name}</Link>
                 <div className="rating">
 
                     {showRating(product.rating)}
 
                 </div>
-                <span className="old__price">{product.oldPrice > product.newPrice ? `$ ${product.oldPrice}.00` : ""}</span>
-                <span className="price">{`$ ${product.newPrice}.00`}</span>
+                <span className="old__price">{product.price > product.discount ? `$ ${product.price}.00` : ""}</span>
+                <span className="price">{`$ ${product.discount}.00`}</span>
             </div>
         </div>
     </Fragment>

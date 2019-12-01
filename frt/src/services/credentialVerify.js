@@ -25,7 +25,6 @@ function getAccess({code = "002"} = {}) {
 // }
 
 function getDirectPath({code = "002"} = {}) {
-    console.log(code);
     if(code === "000") return "/app/dashboard";
     if(code === "001") return "/";
     return "/";

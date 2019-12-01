@@ -6,7 +6,6 @@ import {getAccess, getDirectPath} from "services/credentialVerify";
 
 const Routes = ({verifyRoute, directPath, ...props}) => {
     let accessRoutes = routes.filter(v => verifyRoute(v.access));
-    console.log(accessRoutes);
     return (
         <Switch>
             {

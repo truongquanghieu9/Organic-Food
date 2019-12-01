@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import api from "contents/display/Shop";
+import { apiCall } from "services/api";
 
 import ShopDetail from 'components/Shop/ShopDetail';
 
@@ -13,12 +15,22 @@ class ShopDetailContainer extends Component {
         this.state = {
             quantity: 1,
             isShowMessage: false,
-            products: productList
+            products: [],
+            product: {}
         }
     }
 
     async componentDidMount() {
-        // this.props.handleFetchProductsRequest();
+        try {
+            let {id} = this.props.match.params;
+            let food = await apiCall(...api.food.getOne(id));
+            this.setState({product: food})
+
+            let listFood = await apiCall(...api.food.get());
+            this.setState({products: listFood})
+        } catch (err){
+            console.log(err);
+        }
     }
 
     handleChange = (e) => {
@@ -68,18 +80,28 @@ class ShopDetailContainer extends Component {
         }
         return result
     }
+
+    productStatus = (product) => {
+        let status;
+        if(product.quantity === 0){
+            status = "soldout";
+        } else if(product.price-product.discount > 0){
+            status= "sale";
+        } else if(product.quantity <= 90 || status === "sale"){
+            status= "hot";
+        }
+        return status;
+    } 
     
     getProduct = () => {
         let { match} = this.props;
         let {products} = this.state;
         if(products.length > 0 && match.params.id !== 0) {
-            return products.find(food => food.id ==  match.params.id);
+            return products.find(food => food._id ==  match.params.id);
         }
     }
 
     render() {
-        console.log(this.props.match.params);
-        // let { products } = this.props;
         let { quantity, isShowMessage, products} = this.state;
 
         return (
@@ -97,6 +119,7 @@ class ShopDetailContainer extends Component {
                         handleChange = {this.handleChange}
                         handleIncreasehandleDecrease = {this.handleIncreasehandleDecrease}
                         showMessage = {this.showMessage}
+                        productStatus={this.productStatus}
                     />
                     : <span/>
                 }

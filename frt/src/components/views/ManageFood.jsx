@@ -49,6 +49,15 @@ const ManageFood = ({formIsOpen, toggleForm, hd, form, food, foods, table, categ
                                         required
                                     />
                                     <FormInput
+                                        type="number"
+                                        label="Rating"
+                                        placeholder="Rating 1-5"
+                                        name="star"
+                                        value={food.star}
+                                        onChange={hd.change}
+                                        required
+                                    />
+                                    <FormInput
                                         type="text"
                                         label="Description"
                                         placeholder="Enter some description here..."
@@ -138,7 +147,7 @@ const ManageFood = ({formIsOpen, toggleForm, hd, form, food, foods, table, categ
                                         {
                                             image.length > 0
                                             ? <div>
-                                                <ListImage images={image}/>
+                                                <ListImage images={image} upImage={food.image_id}/>
                                                 <div className="uploadBtn">
                                                     <Browse/>
                                                 </div>

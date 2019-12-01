@@ -7,6 +7,7 @@ import withNoti from "hocs/withNoti";
 const DEFAULT_FOOD = {
     name: "",
     desc: "",
+    star: "",
     quantity: "",
     price: "",
     discount: "",
@@ -53,6 +54,7 @@ function ManageFoodContain({api, user, notify, ...props}) {
                     fd.append("name", food.name);
                     fd.append("desc", food.desc);
                     fd.append("quantity", food.quantity);
+                    fd.append("star", food.star);
                     fd.append("price", food.price);
                     fd.append("discount", food.discount);
                     fd.append("category_id", food.category_id);
@@ -109,6 +111,7 @@ function ManageFoodContain({api, user, notify, ...props}) {
         try {
             let foodOne = await apiCall("get", api.food.getOne(user._id, food_id));
             setFood(foodOne);
+            setImage(foodOne.image_id);
             setOpenForm(true);
         } catch(err) {
             notify();

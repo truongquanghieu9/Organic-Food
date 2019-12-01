@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import api from "contents/display/Shop";
+import { apiCall } from "services/api";
 
 import Shop from 'components/Shop/Shop';
 
@@ -13,12 +15,17 @@ class ShopContainer extends Component {
         this.state = {
             currentPage: 1,
             productsPerPage: 12,
-            products: productList
+            products: []
         }
     }
 
-    componentDidMount() {
-        // this.props.handleFetchProductsRequest();
+    async componentDidMount() {
+        try {
+            let listFood = await apiCall(...api.food.get());
+            this.setState({products: listFood})
+        } catch (err){
+            console.log(err);
+        }
     }
 
     filterProducts = (products) => {
@@ -43,6 +50,18 @@ class ShopContainer extends Component {
         }
         return result
     }
+
+    productStatus = (product) => {
+        let status;
+        if(product.quantity === 0){
+            status = "soldout";
+        } else if(product.price-product.discount > 0){
+            status= "sale";
+        } else if(product.quantity <= 90 || status === "sale"){
+            status= "hot";
+        }
+        return status;
+    } 
 
     handleClick = event => {
         this.setState({
@@ -90,14 +109,13 @@ class ShopContainer extends Component {
             <Fragment>
                 <Shop
                     products={products}
-                    currentPage={currentPage}
-                    productsPerPage={productsPerPage}
                     renderProduct={this.renderProduct}
                     currentProduct={currentProduct}
                     renderPageNumbers={this.renderPageNumbers}
                     handlAddToCart={handlAddToCart}
                     showRating={this.showRating}
                     pageNumbers={pageNumbers}
+                    productStatus={this.productStatus}
                 />
             </Fragment>
         );

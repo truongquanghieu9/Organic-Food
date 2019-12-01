@@ -12,6 +12,7 @@ const foodSchema = new mongoose.Schema({
     quantity: Number,
     price: Number,
     discount: Number,
+    star: Number,
     review_id: [
         {
             type: mongoose.Schema.Types.ObjectId,
@@ -41,7 +42,12 @@ foodSchema.pre("remove", async function(next){
         //     let foundReview = await db.Review.findOne({review_id: rev});
         //     if(foundReview) await foundReview.remove();
         // }
-        if(this.image_id) await db.Image.deleteMany({_id: {$in: this.image_id}});
+        if(this.image_id.length > 0) {
+            for (let imgId of this.image_id){
+                let findImg = await db.Image.findById(imgId);
+                if(findImg) await findImg.remove();
+            }
+        }
         if(this.review_id) await db.Review.deleteMany({_id: {$in: this.review_id}});
         // remove in OrderDetail
         let foundFood = await db.OrderDetail.findOne({food_id: this._id});

@@ -1,16 +1,27 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import api from "contents/display/Shop";
+import { apiCall } from "services/api";
 
 import Foods from 'components/Shop/Foods';
 
-import {productList} from "services/testShopData/FakeData"
+// import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class ProductsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: productList
+            products: []
+        }
+    }
+
+    async componentDidMount() {
+        try {
+            let listFood = await apiCall(...api.food.get());
+            this.setState({products: listFood})
+        } catch (err){
+            console.log(err);
         }
     }
 
@@ -29,6 +40,18 @@ class ProductsContainer extends Component {
         }
         return result
     }
+
+    productStatus = (product) => {
+        let status;
+        if(product.quantity === 0){
+            status = "soldout";
+        } else if(product.price-product.discount > 0){
+            status= "sale";
+        } else if(product.quantity <= 90 || status === "sale"){
+            status= "hot";
+        }
+        return status;
+    } 
 
     render() {
 
@@ -52,6 +75,7 @@ class ProductsContainer extends Component {
                                                     key={i}
                                                     handlAddToCart={this.props.handlAddToCart}
                                                     showRating={this.showRating}
+                                                    productStatus={this.productStatus}
                                                 />
                                             : ""
                                         ))

@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import api from "contents/display/Shop";
+import { apiCall } from "services/api";
 
 import OurProducts from 'components/Shop/OurProducts';
 import OurProductsItem from 'components/Shop/OurproductsItem';
 
-import {productList} from "services/testShopData/FakeData"
-import { actFetchProductsRequest, actAddToCart } from  'store/actions/shop';
+import { actAddToCart } from 'store/actions/shop';
 
 class OurProductsContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: productList
+            products: []
         }
     }
 
     async componentDidMount() {
-        try{
-            // let products= this.props.handleFetchProductsRequest();
-            // this.setState({
-            //     products
-            // });
-        } catch(err){
+        try {
+            let listFood = await apiCall(...api.food.get());
+            this.setState({products: listFood})
+        } catch (err){
             console.log(err);
         }
     }
@@ -53,6 +52,18 @@ class OurProductsContainer extends Component {
         return prod;
     }
 
+    productStatus = (product) => {
+        let status;
+        if(product.quantity === 0){
+            status = "soldout";
+        } else if(product.price-product.discount > 0){
+            status= "sale";
+        } else if(product.quantity <= 90 || status === "sale"){
+            status= "hot";
+        }
+        return status;
+    } 
+
     //Flattens passed array in one dimensional array
     flatten = (arr) => {
         const result = []
@@ -67,7 +78,7 @@ class OurProductsContainer extends Component {
     }
 
     getCategory = (products) => {
-        return products.map(x => x.type);
+        return products.map(x => x.category_id.name);
     }
 
     //unique values in an array
@@ -78,7 +89,7 @@ class OurProductsContainer extends Component {
     }
 
     filterProducts = (products, key) => {
-        return products.filter(product => product.type === key);
+        return products.filter(product => product.category_id.name === key);
     }
 
     render() {
@@ -94,7 +105,6 @@ class OurProductsContainer extends Component {
         // filter product by "key"
         let arr = this.filterProducts(products, "juices");
         return (
-
             <OurProducts>
                 {
                     rands.map((val, i) => (
@@ -103,18 +113,12 @@ class OurProductsContainer extends Component {
                             key={i}
                             handlAddToCart={this.props.handlAddToCart}
                             showRating={this.showRating}
+                            productStatus={this.productStatus}
                         />
                     ))
                 }
             </OurProducts>
-
         );
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-        products: state.products,
     }
 }
 
@@ -127,9 +131,6 @@ function mapState({...user}) {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        // handleFetchProductsRequest: () => {
-        //     dispatch(actFetchProductsRequest());
-        // },
         handlAddToCart: product => {
             dispatch(actAddToCart(product, 1));
         }

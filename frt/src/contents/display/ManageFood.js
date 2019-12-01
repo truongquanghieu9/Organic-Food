@@ -17,7 +17,7 @@ export default {
                 title: "Food List",
                 subtitle: "Food of shop"
             },
-            header: ["ID", "Name", "Quantity", "Price", "Discount", "Image", "Category", "Options"],
+            header: ["ID", "Name", "Rating", "Quantity", "Price", "Discount", "Image", "Category", "Options"],
             empty: "There is no food information to show here."
         }
     },

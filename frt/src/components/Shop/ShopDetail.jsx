@@ -2,7 +2,7 @@ import React from 'react';
 import ShopLayout from "contains/Layout/ShopLayout";
 import ProductView from "contains/Shop/ProductsContainer";
 
-const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRating, handleChange, handleIncreasehandleDecrease, showMessage, ...props}) => (
+const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRating, handleChange, handleIncreasehandleDecrease, showMessage, productStatus}) => (
     <ShopLayout>
         <div>
             {/* BEGIN SHOP ITEM */}
@@ -12,20 +12,18 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                         {isShowMessage ? showMessage(product.name, quantity) : ''}
                         <div className="col-md-6 item__image pl-0">
                             <div className="item-carousel owl-carousel owl-theme">
-                                <div className="item"><img src="/img/apple.jpg" alt="apple" /></div>
-                                <div className="item"><img src="/img/banana.jpg" alt="banana" /></div>
-                                <div className="item"><img src="/img/peace.jpg" alt="peace" /></div>
-                                <div className="item"><img src="/img/tomato.jpg" alt="tomato" /></div>
-                                <div className="item"><img src="/img/sweetlime.jpg" alt="sweetlime" /></div>
-                                <div className="item"><img src="/img/pineapple.jpg" alt="pineapple" /></div>
-                                <div className="item"><img src="/img/orange.jpg" alt="orange" /></div>
+                                {
+                                    product.image_id.map((item, i) => (
+                                        <div className="item" key={i}><img src={item.link} alt="" /></div>
+                                    ))
+                                }
                             </div>
                             <div className="product__image ml-auto">
-                                <img src={product.src1} alt="cabbage" />
+                                <img src={product.image_id[0].link} alt="" />
                                 <div className="products__sale">
-                                    {product.status === 'sale' ? <span className="onsale">SALE</span> : ''}
-                                    {product.status === 'soldout' ? <span className="onsoldout">SOLD OUT</span> : ''}
-                                    {product.status === 'hot' ? <span className="onsale">HOT</span> : ''}
+                                    {productStatus(product) === 'sale' ? <span className="onsale">SALE</span> : ''}
+                                    {productStatus(product) === 'soldout' ? <span className="onsoldout">SOLD OUT</span> : ''}
+                                    {productStatus(product) === 'hot' ? <span className="onhot">HOT</span> : ''}
                                 </div>
                                 <a href="#1" className="btn__play"><i className="far fa-play-circle" /></a>
                             </div>
@@ -33,7 +31,7 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                         <div className="col-md-6 item__content">
                             <div className="item__info">
                                 <div className="rating">
-                                    <span>{showRating(product.rating)}</span>
+                                    <span>{showRating(product.star)}</span>
                                     <a href="#1"><i className="fas fa-pencil-alt" /> 3 Reviews</a>
                                 </div>
                                 <p>Social good making progress catalytic effect diversity social responsibility Peace Corps
@@ -41,22 +39,22 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                                     Plumpy’nut honor planned giving development, Jane Addams justice change-makers economic independence think tank.</p>
                                 <div className="meta">
 
-                                    {product.inventory > 0 ?
+                                    {product.quantity > 0 ?
                                         <span className="stock">Availability: <span><i className="far fa-check-circle" /> In Stock </span></span> :
                                         <span className="outStock">Availability: <span><i className="far fa-clock"></i> Out Of Stock </span></span>
                                     }
 
-                                    <span className="sku pl-5">Sku: <span>00{product.id}</span></span>
+                                    <span className="sku pl-5">Sku: <span>00{product._id}</span></span>
                                 </div>
                             </div>
                             <hr />
                             <div className="price">
-                                <h1>{`$ ${product.newPrice}.00`}</h1>
+                                <h1>{`$ ${product.discount}.00`}</h1>
                             </div>
                             <div className="add__cart d-flex align-items-center">
                                 <div className="quantity d-flex">
 
-                                    <input type="number" min={1} value={quantity} name="quantity" onChange={handleChange} />
+                                    <input type="number" min={1} max={product.quantity} value={quantity} name="quantity" onChange={handleChange} />
 
                                     <div className="plus__minus">
 
@@ -65,7 +63,12 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
 
                                     </div>
                                 </div>
-                                <button onClick={() => handlAddToCart(product)} className="btnAdd"><i className="fas fa-shopping-cart" /> ADD TO CART</button>
+                                {
+                                    productStatus(product) === 'soldout' 
+                                    ? <button onClick={() => handlAddToCart(product)} className="btnDisable" disabled><i className="fas fa-shopping-cart"  /> ADD TO CART</button>
+                                    : <button onClick={() => handlAddToCart(product)} className="btnAdd"><i className="fas fa-shopping-cart"  /> ADD TO CART</button>
+                                }
+                                
                                 <div className="extra">
                                     <a href="#1"><i className="far fa-heart" /></a>
                                 </div>
@@ -79,7 +82,7 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                             <hr />
                             <div className="meta__link">
                                 <div className="cats__link">
-                                    <span>Categories: </span><span className="cats__link"><a href="#1">{product.type}</a></span>
+                                    <span>Categories: </span><span className="cats__link"><a href="#1">{product.category_id.name}</a></span>
                                 </div>
                                 <div className="tags__link"><span>Tags: </span><span className="tags__link">
                                     <a href="#1">boxshop</a>, <a href="#1">theme-sky</a>, <a href="#1">woocommerce</a>, <a href="#1">wordpress</a></span>

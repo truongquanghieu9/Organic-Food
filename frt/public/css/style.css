@@ -65,7 +65,7 @@ input[type=number] {
   color: #000000;
 }
 
-.products__sale .onsale, .products__sale .onsoldout {
+.products__sale .onsale, .products__sale .onsoldout, .products__sale .onhot {
   position: absolute;
   top: 10px;
   left: 0;
@@ -75,7 +75,7 @@ input[type=number] {
   color: #ffffff;
   background-color: #7dc641;
 }
-.products__sale .onsale:before, .products__sale .onsoldout:before {
+.products__sale .onsale:before, .products__sale .onsoldout:before, .products__sale .onhot:before {
   content: "";
   position: absolute;
   width: 0;
@@ -85,7 +85,7 @@ input[type=number] {
   top: 0;
   left: calc(100% - 1px);
 }
-.products__sale .onsale:after, .products__sale .onsoldout:after {
+.products__sale .onsale:after, .products__sale .onsoldout:after, .products__sale .onhot:after {
   content: "";
   position: absolute;
   width: 0;
@@ -105,6 +105,18 @@ input[type=number] {
 }
 .products__sale .onsoldout:after {
   border-bottom: 13px solid #848484;
+}
+
+.products__sale .onhot {
+  width: 90px;
+  background-color: #af3131;
+  color: #ffffff;
+}
+.products__sale .onhot:before {
+  border-top: 13px solid #af3131;
+}
+.products__sale .onhot:after {
+  border-bottom: 13px solid #af3131;
 }
 
 /*----------------------------
@@ -2639,17 +2651,23 @@ input[type=number] {
   width: 100%;
 }
 .shop__item .item__image .product__image .products__sale .onsale, .shop__item .item__image .product__image .products__sale .onsoldout,
-.shop__item .item__image .product__image .products__sale .onsoldout {
+.shop__item .item__image .product__image .products__sale .onsoldout
+, .shop__item .item__image .product__image .products__sale .onhot,
+.shop__item .item__image .product__image .products__sale .onhot {
   width: 20%;
   padding: 5px 0;
 }
 .shop__item .item__image .product__image .products__sale .onsale:before, .shop__item .item__image .product__image .products__sale .onsoldout:before,
-.shop__item .item__image .product__image .products__sale .onsoldout:before {
+.shop__item .item__image .product__image .products__sale .onsoldout:before
+, .shop__item .item__image .product__image .products__sale .onhot:before,
+.shop__item .item__image .product__image .products__sale .onhot:before {
   border-top: 19px solid #7dc641;
   border-right: 11px solid transparent;
 }
 .shop__item .item__image .product__image .products__sale .onsale:after, .shop__item .item__image .product__image .products__sale .onsoldout:after,
-.shop__item .item__image .product__image .products__sale .onsoldout:after {
+.shop__item .item__image .product__image .products__sale .onsoldout:after
+, .shop__item .item__image .product__image .products__sale .onhot:after,
+.shop__item .item__image .product__image .products__sale .onhot:after {
   border-bottom: 19px solid #7dc641;
   border-right: 11px solid transparent;
 }
@@ -2659,6 +2677,14 @@ input[type=number] {
 .shop__item .item__image .product__image .products__sale .onsoldout:after {
   border-bottom: 19px solid #848484;
 }
+
+.shop__item .item__image .product__image .products__sale .onhot:before {
+  border-top: 19px solid #af3131;
+}
+.shop__item .item__image .product__image .products__sale .onhot:after {
+  border-bottom: 19px solid #af3131;
+}
+
 .shop__item .item__image .product__image .btn__play {
   position: absolute;
   right: 5%;
@@ -2754,6 +2780,21 @@ input[type=number] {
 .shop__item .add__cart .btnAdd i {
   font-size: 1.2rem;
 }
+
+.shop__item .add__cart .btnDisable {
+  height: 55px;
+  width: 165px;
+  padding: 2%;
+  background-color: #3f3f3f;
+  outline: none;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+}
+.shop__item .add__cart .btnDisable i {
+  font-size: 1.2rem;
+}
+
 .shop__item .add__cart .extra {
   margin-left: 1%;
   height: 55px;

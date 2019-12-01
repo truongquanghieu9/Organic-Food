@@ -3,7 +3,7 @@ const db = require("../models");
 const {spliceId, casDelete} = require("../utils/dbSupport");
 
 const orderSchema = new mongoose.Schema({
-    people_id: {
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
