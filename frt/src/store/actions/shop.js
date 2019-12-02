@@ -1,14 +1,14 @@
 import * as types from '../actionTypes';
 
-import callAPI from 'services/testShopData/callAPI';
+// import callAPI from 'services/testShopData/callAPI';
 
-export const actFetchProductsRequest = () => {
-    return dispatch => {
-        return callAPI("products", 'GET', null).then(res => {
-            dispatch(actFetchProducts(res.data));
-        });
-    }
-}
+// export const actFetchProductsRequest = () => {
+//     return dispatch => {
+//         return callAPI("products", 'GET', null).then(res => {
+//             dispatch(actFetchProducts(res.data));
+//         });
+//     }
+// }
 
 export const actDeleteHeaderCart = (id) => {
     return dispatch => (
@@ -16,12 +16,12 @@ export const actDeleteHeaderCart = (id) => {
     )
 }
 
-export const actFetchProducts = products => {
-    return {
-        type: types.FETCH_PRODUCTS,
-        products
-    }
-}
+// export const actFetchProducts = products => {
+//     return {
+//         type: types.FETCH_PRODUCTS,
+//         products
+//     }
+// }
 
 
 export const actAddToCart = (product, quantity) => {

@@ -125,12 +125,12 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
                                             {
                                                 cart.map((item, i) => (
                                                     <div className="cart__item d-flex align-items-center" key={i}>
-                                                        <img src={item.product.src1} alt={item.product.name} />
+                                                        <img src={item.product.image_id[0].link} alt={item.product.name} />
                                                         <div className="cart__info">
                                                             <h6>{item.product.name}</h6>
-                                                            <div>{item.quantity} x <span className="amount">{`$ ${item.product.newPrice}.00`}</span></div>
+                                                            <div>{item.quantity} x <span className="amount">{`$ ${item.product.discount}.00`}</span></div>
                                                         </div>
-                                                        <button className="remove btn__shopnow" onClick={() => handleDeleteCart(item.product.id)}>×</button>
+                                                        <button className="remove btn__shopnow" onClick={() => handleDeleteCart(item.product._id)}>×</button>
                                                     </div>
                                                 ))
                                             }

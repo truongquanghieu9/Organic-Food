@@ -14,7 +14,7 @@ const Foods = ({handlAddToCart, showRating, product, productStatus}) => (
             <div className="products_group_button">
                 <div className="add__cart products_group_item">
 
-                    <a href="/" onClick={() => handlAddToCart(product)}><i className="fas fa-shopping-cart" /></a>
+                    <a href="#" onClick={() => handlAddToCart(product)}><i className="fas fa-shopping-cart" /></a>
 
                     <span>Add to cart</span>
                 </div>

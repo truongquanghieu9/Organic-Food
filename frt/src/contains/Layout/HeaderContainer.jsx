@@ -17,7 +17,7 @@ class HeaderCartContainer extends Component {
     showTotalAmount = (cart) => {
         let total = 0;
         for (let item of cart) {
-            total += (item.product.newPrice * item.quantity);
+            total += (item.product.discount * item.quantity);
         }
         return total;
     }
@@ -43,12 +43,12 @@ function mapState({...user}) {
     }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        handleDeleteCart: id => {
-            dispatch(actDeleteCart(id));
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch, props) => {
+//     return {
+//         handleDeleteCart: id => {
+//             dispatch(actDeleteCart(id));
+//         }
+//     }
+// }
 
 export default connect(mapState, {actDeleteHeaderCart, logOut})(HeaderCartContainer);

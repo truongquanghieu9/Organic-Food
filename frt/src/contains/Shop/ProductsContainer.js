@@ -106,7 +106,6 @@ function mapState({...user}) {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-
         handlAddToCart: product => {
             dispatch(actAddToCart(product, 1));
         }

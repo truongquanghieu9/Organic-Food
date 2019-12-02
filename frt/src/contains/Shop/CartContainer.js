@@ -24,7 +24,7 @@ class CartContainer extends Component {
     showTotalAmount = cart => {
         let total = 0;
         for (let item of cart) {
-            total += (item.product.newPrice * item.quantity);
+            total += (item.product.discount * item.quantity);
         }
         return total;
     }
