@@ -6,7 +6,7 @@ const DealItemCarousel = ({product, showRating, handlAddToCart}) => (
         <div className="carousel__item">
             <div className="products__thumbnail">
                 <img src={product.image_id[0].link} alt="" />
-                <img src={product.src2} className="product_image_back" alt={product.name} />
+                <img src={product.image_id[1].link} className="product_image_back" alt={product.name} />
                 <div className="products__sale">
                     <span className="onsale">SALE</span>
                 </div>

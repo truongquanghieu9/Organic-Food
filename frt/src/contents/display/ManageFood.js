@@ -32,7 +32,7 @@ export default {
         },
         image: {
             title: "New Image",
-            subtitle: "Please drop image for food"
+            subtitle: "Please drop 2 images relative to that food"
         }
     },
     submit: {

@@ -75,7 +75,7 @@ const Cart = ({cart, fee, handleChange, showTotalAmount, products, quantity, han
                                     </tr>
                                     <tr>
                                         <td colSpan={2}>
-                                            <button className="blog__button__green"><Link>PROCEED TO CHECKOUT</Link></button>
+                                            <button className="blog__button__green"><Link to="/checkout">PROCEED TO CHECKOUT</Link></button>
                                             <button className="blog__button__inverse"><Link to='/shop'>CONTINUE SHOPPING</Link></button>
                                         </td>
                                     </tr>

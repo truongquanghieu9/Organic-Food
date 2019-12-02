@@ -14,7 +14,9 @@ let findIndex = (cart, id) => {
     return index;
 }
 
-// const findIndex = (cart, id) => cart.indexOf(id);
+// const findIndex = (cart, id) => (
+//     cart.findIndex(c => c.id === id)
+// );
 
 const cart = (state = initialState, action) => {
     let { product, quantity } = action

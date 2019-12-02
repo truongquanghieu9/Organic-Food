@@ -19,6 +19,7 @@ import ShopContain from "contains/Shop/ShopContainer";
 import Portfolio from "contains/Shop/PortfolioContainer";
 import Blog from "components/Shop/Blog";
 import Account from "components/Shop/Account";
+import Checkout from "components/Shop/Checkout";
 import HomePage from "components/Page/HomePage";
 
 import dashboard from "./display/Dashboard";
@@ -131,6 +132,11 @@ const routes = [
         path: "/account",
         access: ["guestAccess", "peopleAccess"],
         Component: Account
+    },
+    {
+        path: "/checkout",
+        access: ["guestAccess", "peopleAccess"],
+        Component: Checkout
     },
     {
         path: "/portfolio",
