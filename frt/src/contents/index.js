@@ -19,7 +19,7 @@ import ShopContain from "contains/Shop/ShopContainer";
 import Portfolio from "contains/Shop/PortfolioContainer";
 import Blog from "components/Shop/Blog";
 import Account from "components/Shop/Account";
-import Checkout from "components/Shop/Checkout";
+import CheckoutContain from "contains/Shop/CheckoutContainer";
 import HomePage from "components/Page/HomePage";
 
 import dashboard from "./display/Dashboard";
@@ -136,7 +136,7 @@ const routes = [
     {
         path: "/checkout",
         access: ["guestAccess", "peopleAccess"],
-        Component: Checkout
+        Component: CheckoutContain
     },
     {
         path: "/portfolio",

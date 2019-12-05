@@ -53,10 +53,9 @@ exports.getOne = async(req, res, next) => {
     }
 }
 
-exports.update  = async(req, res, next) => {
+exports.update = async(req, res, next) => {
     try {
         let updatedPeople = await db.People.findByIdAndUpdate(req.params.people_id, req.body, {new: true});
-
         return res.status(200).json(updatedPeople);
     } catch(err) {
         return next(err);

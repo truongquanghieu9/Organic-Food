@@ -1,28 +1,20 @@
 import * as types from '../actionTypes';
 
-// import callAPI from 'services/testShopData/callAPI';
-
-// export const actFetchProductsRequest = () => {
-//     return dispatch => {
-//         return callAPI("products", 'GET', null).then(res => {
-//             dispatch(actFetchProducts(res.data));
-//         });
-//     }
-// }
-
 export const actDeleteHeaderCart = (id) => {
     return dispatch => (
         dispatch(actDeleteCart(id))
     )
 }
 
-// export const actFetchProducts = products => {
+export function actCheckout(){
+    localStorage.removeItem("cart");
+}
+
+// export const actDeleteAllCart = () => {
 //     return {
-//         type: types.FETCH_PRODUCTS,
-//         products
+//         type: types.DELETE_ALL_CART,
 //     }
 // }
-
 
 export const actAddToCart = (product, quantity) => {
     return {

@@ -5,7 +5,6 @@ import { apiCall } from "services/api";
 
 import Foods from 'components/Shop/Foods';
 
-// import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class ProductsContainer extends Component {

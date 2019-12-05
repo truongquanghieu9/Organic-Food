@@ -6,8 +6,7 @@ import { apiCall } from "services/api";
 
 import ShopDetail from 'components/Shop/ShopDetail';
 
-import {productList} from "services/testShopData/FakeData"
-import { actAddToCart, actMessage, actFetchProductsRequest } from 'store/actions/shop';
+import { actAddToCart, actMessage } from 'store/actions/shop';
 
 class ShopDetailContainer extends Component {
     constructor(props) {
@@ -129,13 +128,7 @@ class ShopDetailContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        products: state.products
-    }
-}
-
-function mapState({...user}) {
+function mapStateToProps({...user}) {
     return {
         products: user.products,
         user: user.user.data
@@ -144,9 +137,6 @@ function mapState({...user}) {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        // handleFetchProductsRequest: () => {
-        //     dispatch(actFetchProductsRequest());
-        // },
         handlAddToCart: (product, quantity) => {
             dispatch(actAddToCart(product, quantity));
         },
@@ -156,4 +146,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapState, mapDispatchToProps)(ShopDetailContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopDetailContainer);

@@ -5,7 +5,7 @@ import CartItem from "components/Shop/CartItem";
 import ProductsContainer from "contains/Shop/ProductsContainer";
 import ShopLayout from "contains/Layout/ShopLayout";
 
-const Cart = ({cart, fee, handleChange, showTotalAmount, products, quantity, handleDeleteCart, handleUpdateCart}) => (
+const Cart = ({user, cart, fee, handleChange, showTotalAmount, products, quantity, handleDeleteCart, handleUpdateCart}) => (
     <ShopLayout>
          {/* Begin Cart */}
         <section className="cart">
@@ -64,9 +64,9 @@ const Cart = ({cart, fee, handleChange, showTotalAmount, products, quantity, han
                                             <label>
                                                 <input type="radio" name="fee" value={0} onChange={handleChange} defaultChecked /> Free shipping
                                             </label>
-                                            <label>
+                                            {/* <label>
                                                 <input type="radio" name="fee" value={10} onChange={handleChange} /> Local Pickup: <span className="amount">$10.00</span>
-                                            </label>
+                                            </label> */}
                                         </td>
                                     </tr>
                                     <tr>
@@ -75,7 +75,11 @@ const Cart = ({cart, fee, handleChange, showTotalAmount, products, quantity, han
                                     </tr>
                                     <tr>
                                         <td colSpan={2}>
-                                            <button className="blog__button__green"><Link to="/checkout">PROCEED TO CHECKOUT</Link></button>
+                                            {
+                                                user.viewname
+                                                ? <button className="blog__button__green"><Link to="/checkout">PROCEED TO CHECKOUT</Link></button>
+                                                : <button className="blog__button__inverse"><Link to='/login'>PLEASE LOGIN TO CHECKOUT</Link></button>
+                                            }
                                             <button className="blog__button__inverse"><Link to='/shop'>CONTINUE SHOPPING</Link></button>
                                         </td>
                                     </tr>

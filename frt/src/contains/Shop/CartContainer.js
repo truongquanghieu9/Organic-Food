@@ -31,10 +31,11 @@ class CartContainer extends Component {
     
     render() {
 
-        let { cart, products, handleDeleteCart, handleUpdateCart } = this.props;
+        let { cart, products, handleDeleteCart, handleUpdateCart, user } = this.props;
         let { quantity, fee } = this.state;
         return (
             <Cart
+                user={user}
                 cart={cart}
                 fee={fee}
                 products={products}

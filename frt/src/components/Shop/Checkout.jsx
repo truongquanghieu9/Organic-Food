@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 import ShopLayout from "contains/Layout/ShopLayout";
 
-const Checkout = ({cart, fee, showTotalAmount, handleChange}) => (
-    <ShopLayout>
+const Checkout = ({cart, fee, people, order, user, showTotalAmount, hdChange, hdConfirm, ...props}) => (
+    <ShopLayout {...props}>
         <Fragment>
             {/* BEGIN ACCOUNT */}
             <section className="cart account py-5">
@@ -15,27 +15,47 @@ const Checkout = ({cart, fee, showTotalAmount, handleChange}) => (
                             <form>
                                 <div className="form-group">
                                     <label >Full name <span style={{ color: 'red' }}>*</span></label>
-                                    <input required type="text" className="form-control" name="viewname" />
-                                </div>
-                                <div className="form-group">
-                                    <label >Email <span style={{ color: 'red' }}>*</span></label>
-                                    <input required type="email" className="form-control" name="email" />
-                                </div>
+                                    <input 
+                                        required 
+                                        type="text" 
+                                        className="form-control" 
+                                        name="fullname" 
+                                        value={people.fullname}
+                                        onChange={hdChange} 
+                                    />
+                                </div>                            
                                 <div className="form-group">
                                     <label >Address: <span style={{ color: 'red' }}>*</span></label>
-                                    <input required type="text" className="form-control" name="address" />
+                                    <input 
+                                        required 
+                                        type="text" 
+                                        className="form-control" 
+                                        name="address" 
+                                        value={people.address}
+                                        onChange={hdChange} 
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label >Phone number: <span style={{ color: 'red' }}>*</span></label>
-                                    <input required type="phone" className="form-control" name="phone" />
+                                    <input 
+                                        required 
+                                        type="phone" 
+                                        className="form-control" 
+                                        name="phone" 
+                                        value={people.phone}
+                                        onChange={hdChange} 
+                                    />
                                 </div>
-
-                                <div className="form-group form-check px-0">
+                                <div className="form-group">
+                                    <label >Email <span style={{ color: 'red' }}>*</span></label>
+                                    <input required type="email" className="form-control" name="email" value={user.email} disabled/>
+                                </div>
+                                {/* <div className="form-group form-check px-0">
                                     <button type="submit" className="btn btn-primary mr-5">Checkout Now</button>
                                     <label className="form-check-label">
                                         <input className="form-check-input" type="checkbox" /> I want to checkout
                                     </label>
-                                </div>
+                                </div> */}
                             </form>
                         </div>
                         <div className="col-md-5">
@@ -45,32 +65,42 @@ const Checkout = ({cart, fee, showTotalAmount, handleChange}) => (
                                     <tbody className="table__total">
                                         <tr>
                                             <td colSpan={2}>
-                                                <span className="total__header">CART TOTALS</span>
+                                                <span className="total__header">PAYMENT STATUS</span>
+                                                &ensp;&ensp;
+                                                <b>
+                                                {
+                                                    order.pay_type === "Online payment"
+                                                    ? order.status = "Paid" 
+                                                    : order.status = "Unpaid" 
+                                                }
+                                                </b>
                                             </td>
+                                                    
                                         </tr>
-                                        {/* <tr>
-                                            <td>Subtotal</td>
-                                            <td className="amount">$ 00</td>
-                                        </tr> */}
                                         <tr>
                                             <td>Shipping</td>
                                             <td>
                                                 <label>
-                                                    <input type="radio" name="fee" value={0} onChange="" defaultChecked /> CoD (Cash on delivery)
+                                                    <input type="radio" name="pay_type" value="CoD" onChange={hdChange}/> Cash on delivery
                                                 </label>
                                                 <br/>
                                                 <label>
-                                                    <input type="radio" name="fee" value={10} onChange="" /> Online check payments: <img src="/img/checkout.png" alt=""/>
-                                                </label>
+                                                    <input type="radio" name="pay_type" value="Online payment" onChange={hdChange} /> Online payment
+                                                     <img src="/img/checkout.png" alt=""/>
+                                                </label>    
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Total</td>
-                                            <td className="amount">$00</td>
+                                            <td className="amount">${showTotalAmount(cart)}</td>
                                         </tr>
                                         <tr>
                                             <td colSpan={2}>
-                                                <button className="blog__button__green"><Link>CHECKOUT NOW</Link></button>
+                                                {
+                                                    order.pay_type !== "" && cart.length > 0
+                                                    ? <button className="blog__button__green" onClick={hdConfirm}><Link to="/shop">CHECKOUT NOW</Link></button>
+                                                    : <button className="blog__button__inverse" onClick={hdConfirm} disabled><Link to="">CHECKOUT NOW</Link></button>
+                                                }
                                                 <button className="blog__button__inverse"><Link to='/shop'>CONTINUE SHOPPING</Link></button>
                                             </td>
                                         </tr>

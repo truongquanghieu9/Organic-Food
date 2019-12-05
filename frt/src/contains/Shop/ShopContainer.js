@@ -6,8 +6,7 @@ import { apiCall } from "services/api";
 
 import Shop from 'components/Shop/Shop';
 
-import {productList} from "services/testShopData/FakeData"
-import { actAddToCart, actFetchProductsRequest } from 'store/actions/shop';
+import { actAddToCart } from 'store/actions/shop';
 
 class ShopContainer extends Component {
     constructor(props) {
@@ -122,12 +121,6 @@ class ShopContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        products: state.products
-    }
-}
-
 function mapState({...user}) {
     return {
         products: user.products,
@@ -137,9 +130,6 @@ function mapState({...user}) {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        // handleFetchProductsRequest: () => {
-        //     dispatch(actFetchProductsRequest());
-        // },
         handlAddToCart: product => {
             dispatch(actAddToCart(product, 1));
         }

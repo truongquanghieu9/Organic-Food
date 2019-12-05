@@ -10,7 +10,8 @@ export function setAuthorizationToken(token){
 
 export function logOut(){
     return dispatch => {
-        localStorage.clear();
+        // localStorage.clear();
+        localStorage.removeItem("token");
         sessionStorage.clear();
         setAuthorizationToken(false);
         dispatch(setUser({}));

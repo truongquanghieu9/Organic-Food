@@ -103,6 +103,15 @@ exports.getOne = async(req, res, next) => {
     }
 }
 
+exports.getPeople = async(req, res, next) => {
+    try {
+        let foundPeople = await db.People.findOne({user_id: req.params.user_id}).exec();
+        return res.status(200).json(foundPeople);
+    } catch(err) {
+        return next(err);
+    }
+}
+
 exports.updatePassword = async(req, res, next) => {
     try {
         let user = await db.User.findById(req.params.user_id);

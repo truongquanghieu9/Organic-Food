@@ -5,6 +5,15 @@ exports.create = async(req, res, next) => {
         const {user_id} = req.params;
         const {orderDetails, order} = req.body;
 
+        // update quantity in food after order
+        for(let e of orderDetails) {
+            let foundFood = await db.Food.findById(e.food_id);
+            if(foundFood) {
+                foundFood.quantity -= e.quantity;
+                await foundFood.save(); 
+            }
+        }
+
         // Create Order and get order_id
         let newOrder = await db.Order.create({...order, user_id});
 

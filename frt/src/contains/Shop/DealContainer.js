@@ -7,7 +7,6 @@ import Deal from 'components/Shop/Deal';
 import DealItemCarouselNew from 'components/Shop/DealItemCarouselNew';
 import DealItemNew from 'components/Shop/DealItemNew';
 
-import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class DealContainer extends Component {
@@ -99,12 +98,6 @@ class DealContainer extends Component {
                 </Deal>
             </Fragment>
         );
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-        products: state.products
     }
 }
 

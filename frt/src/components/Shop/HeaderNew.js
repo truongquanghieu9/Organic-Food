@@ -145,7 +145,11 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
                                             </div>
                                             <div className="cart__button">
                                                 <button className="blog__button__green"><a href='/cart'>VIEW CART</a></button>
-                                                <button className="blog__button__inverse"><Link to="/checkout">CHECKOUT</Link></button>
+                                                {
+                                                    user.viewname
+                                                    ? <button className="blog__button__inverse"><Link to="/checkout">CHECKOUT</Link></button>
+                                                    : <button className="blog__button__inverse"><Link to="/login">LOGIN BEFORE CHECKOUT</Link></button>
+                                                }
                                             </div>
                                         </div>
                                         {/* End HeaderCartTotal */}
