@@ -3,6 +3,7 @@ import ActivateContain from "contains/views/Activate";
 import ActivatedContain from "contains/views/Activated";
 import ManageCategoryContain from "contains/views/ManageCategory";
 import ManageFoodContain from "contains/views/ManageFood";
+import ManageOrderContain from "contains/views/ManageOrder";
 import ChangePasswordContain from "contains/views/ChangePassword";
 import ProfileContain from "contains/views/Profile";
 import Contact from "contains/views/Contact";
@@ -12,6 +13,7 @@ import Login from "components/views/Login";
 import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import Food from "@material-ui/icons/Spa";
+import Order from '@material-ui/icons/LocalMall';
 
 import CartContain from "contains/Shop/CartContainer";
 import ShopDetailContain from "contains/Shop/ShopDetailContainer";
@@ -29,6 +31,7 @@ import activate from "./display/Activate";
 import activated from "./display/Activated";
 import manage_category from "./display/ManageCategory";
 import manage_food from "./display/ManageFood";
+import manage_order from "./display/ManageOrder";
 import change_password from "./display/ChangePassword";
 import profile from "./display/Profile";
 import contact_User from "./display/Contact";
@@ -58,6 +61,14 @@ const sidebar = [
         Component: ManageFoodContain,
         icon: Food,
         display: manage_food
+    },
+    {
+        path: "/app/orders",
+        access: ["ownerAccess"],
+        name: "Manage Orders",
+        Component: ManageOrderContain,
+        icon: Order,
+        display: manage_order
     }
 ]
 

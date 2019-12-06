@@ -18,10 +18,10 @@ const people = {
 }
 
 const orders = {
-    get: (user_id) => ["post", `/api/user/${user_id}/orders`],
+    get: (user_id) => ["get", `/api/user/${user_id}/orders`],
     create: (user_id) => ["post", `/api/user/${user_id}/orders`],
-    delete: (user_id, order_id) => ["post", `/api/user/${user_id}/orders/${order_id}`],
-    update: (user_id, order_id) => ["post", `/api/user/${user_id}/orders/${order_id}`],
+    delete: (user_id, order_id) => ["delete", `/api/user/${user_id}/orders/${order_id}`],
+    update: (user_id, order_id) => ["put", `/api/user/${user_id}/orders/${order_id}`],
 }
 
 export default {

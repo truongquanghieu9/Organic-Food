@@ -10,4 +10,6 @@ router.route("/:order_id")
 .get(hdl.Order.getOne)
 .put(hdl.Order.update);
 
+router.route("/:order_id").get(hdl.Order.getOrderDetail);
+
 module.exports = router;

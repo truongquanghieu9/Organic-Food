@@ -36,7 +36,8 @@ exports.create = async(req, res, next) => {
 exports.get = async(req, res, next) => {
     try {
         const {user_id} = req.params;
-        let getOrder = await db.Order.find(user_id ? {user_id} : {});
+        // let getOrder = await db.Order.find(user_id ? {user_id} : {});
+        let getOrder = await db.Order.find().populate("user_id").exec();
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
@@ -46,7 +47,14 @@ exports.get = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     try {
         const {order_id} = req.params;
-        let getOrder = await db.Order.findById(order_id).populate("user_id").exec();
+        let getOrder = await db.Order.findById(order_id)
+            .populate({
+                path: "user_id",
+                populate: {
+                    path: "people_id"
+                }
+            })
+            .exec();
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
@@ -62,6 +70,23 @@ exports.update = async(req, res, next) => {
             await foundOrder.save();
         }
         return res.status(200).json(foundOrder);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+exports.getOrderDetail = async(req, res, next) => {
+    try {
+        const {order_id} = req.params;
+        let getOrderDetail = await db.OrderDetail.findOne(order_id)
+            .populate({
+                path: "food_id",
+                populate: {
+                    path: "category_id"
+                }
+            })
+            .exec();
+        return res.status(200).json(getOrderDetail);
     } catch(err) {
         return next(err);
     }
