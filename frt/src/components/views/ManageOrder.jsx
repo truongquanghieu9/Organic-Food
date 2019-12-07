@@ -10,8 +10,8 @@ const ManageOrder = ({orders, setOrders, hdChange, hdUpdateStatus, hdOrderDetail
     <AppLayoutContain {...props}>
         <GridItem xs={12} sm={12} md={12}>
             <TableCard
-                title="Bill List"
-                subtitle="Bill of room in your apartments"
+                title="Order List"
+                subtitle="All order of shop"
             >
                 <ASBar
                     keys={["user_id.viewname", "totalPrice", "status", "pay_type"]}

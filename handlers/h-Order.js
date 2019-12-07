@@ -78,7 +78,7 @@ exports.update = async(req, res, next) => {
 exports.getOrderDetail = async(req, res, next) => {
     try {
         const {order_id} = req.params;
-        let getOrderDetail = await db.OrderDetail.findOne(order_id)
+        let getOrderDetail = await db.OrderDetail.find({order_id})
             .populate({
                 path: "food_id",
                 populate: {

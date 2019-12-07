@@ -4,6 +4,7 @@ import ActivatedContain from "contains/views/Activated";
 import ManageCategoryContain from "contains/views/ManageCategory";
 import ManageFoodContain from "contains/views/ManageFood";
 import ManageOrderContain from "contains/views/ManageOrder";
+import ManageOrderDetailContain from "contains/views/ManageOrderDetail";
 import ChangePasswordContain from "contains/views/ChangePassword";
 import ProfileContain from "contains/views/Profile";
 import Contact from "contains/views/Contact";
@@ -117,6 +118,14 @@ const routes = [
         name: "Send mail to user",
         Component: Contact,
         display: contact_User
+    },
+    
+    {
+        path: "/app/orders/:order_id",
+        access: ["ownerAccess"],
+        name: "Manage Orders Detail",
+        Component: ManageOrderDetailContain,
+        display: manage_order
     },
     
     {
