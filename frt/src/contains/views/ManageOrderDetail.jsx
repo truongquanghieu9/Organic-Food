@@ -12,7 +12,6 @@ function ManageOrderDetailContain({ api, user, notify, ...props}) {
             let {order_id} = props.match.params;
             let getOrderDetail = await apiCall("get", api.order.getOrderDetai(user._id, order_id));
             setOrder(getOrderDetail);
-            console.log(getOrderDetail);
         } catch(err) {
             notify();
         }

@@ -171,7 +171,7 @@ const ManageFood = ({formIsOpen, toggleForm, hd, form, food, foods, table, categ
                 <GridItem xs={12} sm={12} md={12}>
                     <TableCard {...table.food.card}>
                         <ASBar
-                            keys={["name", "category_id.type"]}
+                            keys={["name", "category_id.type", "quantity", "star", "price", "discount"]}
                             create={toggleForm}
                             data={foods}
                             setData={setFoods}

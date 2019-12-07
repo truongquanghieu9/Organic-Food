@@ -14,6 +14,7 @@ router.route("/:food_id")
 .put(mw.User.isCorrect, mw.User.isPermit, hdl.Food.update);
 
 
+router.route("/:food_id/updateQuantity").put(hdl.Food.updateQuantity);
 router.route("/:food_id/wish").put(hdl.Food.wishlist);
 
 router.use("/:food_id/images", require("./r-Image"));

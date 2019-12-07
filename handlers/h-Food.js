@@ -121,3 +121,17 @@ exports.update = async(req, res, next) => {
         return next(err);
     }
 }
+
+exports.updateQuantity = async(req, res, next) => {
+    try {
+        const {food_id} = req.params;
+        let foundFood = await db.Food.findById(food_id);
+        if(foundFood) {
+            foundFood.quantity = req.body.quantity;
+            await foundFood.save();
+        }
+        return res.status(200).json(foundFood);
+    } catch(err) {
+        return next(err);
+    }
+}
