@@ -14,6 +14,7 @@ router.route("/:user_id")
 .delete(hdl.User.remove)
 .put(hdl.User.update);
 
+router.route("/:user_id/getAllOrderDetail").get(hdl.User.getAllOrderDetail);
 router.route("/:user_id/getpeople").get(hdl.User.getPeople);
 router.route("/:user_id/activate").put(hdl.User.activate);
 router.route("/:user_id/password").put(hdl.User.updatePassword);

@@ -173,6 +173,22 @@ exports.update = async(req, res, next) => {
 }
 
 
+exports.getAllOrderDetail = async(req, res, next) => {
+    try {
+        let getOrderDetail = await db.OrderDetail.find()
+            .populate({
+                path: "food_id",
+                populate: {
+                    path: "category_id"
+                }
+            })
+            .exec();
+        return res.status(200).json(getOrderDetail);
+    } catch(err) {
+        return next(err);
+    }
+}
+
 exports.contact = async(req, res, next) => {
     try {
         let {title, content, user_id} = req.body;
