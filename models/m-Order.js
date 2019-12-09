@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         type: String,
         default: "Waiting"
     }
-}, {timestamp: true});
+}, {timestamps: true});
 
 orderSchema.pre("remove", async function(next){
     // try {
