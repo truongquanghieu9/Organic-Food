@@ -13,7 +13,7 @@ const orderDetailSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Order"
     }
-}, {timestamp: true});
+}, {timestamps: true});
 
 orderDetailSchema.pre("remove", async function(next){
     // try {

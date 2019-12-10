@@ -13,7 +13,7 @@ const ASBar = ({create, search, hdChange, ...props}) => (
                 <i className="fas fa-search"></i>
                 <input
                     type="text"
-                    placeholder="Enter the room name here to search"
+                    placeholder="Enter the name here to search"
                     value={search}
                     onChange={hdChange}
                 />

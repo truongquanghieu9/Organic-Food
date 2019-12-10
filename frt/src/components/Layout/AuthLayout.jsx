@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {Grid} from "@material-ui/core";
 import AddAlert from "@material-ui/icons/AddAlert";
 import Snackbar from "components/Snackbar/Snackbar.jsx";
+import SocialBtn from "./SocialBtn";
 
 import "assets/css/components/organic-style.css";
 import "assets/css/views/views.css";
@@ -40,6 +41,7 @@ const AuthLayout = ({bg, bgColor, heading, link, intro, msg, notify, closeNoti, 
                         <i className="fas fa-door-open" ></i> Try with different account?
                     </Link>
                 }
+                <SocialBtn/>
             </Grid>
             <div id="content">
                 {heading && <h1>{heading}</h1>}

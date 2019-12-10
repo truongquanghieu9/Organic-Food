@@ -71,6 +71,15 @@
     }
 }
 
+.food-image {
+    img {
+        margin-right: 15px;
+        border-radius: 5px;
+        width: 50px;
+        height: 50px;
+    }
+}
+
 .bill-electric {
     display: flex !important;
     align-items: center;
@@ -207,4 +216,53 @@
         }
     }
 
+}
+
+.btnState {
+    .button_bakg {
+        margin-top: 13px;
+        margin-bottom: 13px;
+        text-align: center;
+        box-sizing: inherit;
+        display:inline-block;
+        margin-left: 10px;
+
+        > .inspan {
+            border-radius: 4px;
+            background: linear-gradient(to right, #67b26b, #4ca2cb) !important;
+            border: none;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 11px;
+            width: 20px;
+            transition: all 0.4s;
+            cursor: pointer;
+            margin: 5px;
+
+            > .inbtn {
+                border: none;
+                background: none;
+                color: #ffffff !important;
+                &:focus {
+                    outline:0;
+                }
+            }
+
+            &:hover {
+                border-radius: 10px;
+                transition: all 0.3s ease 0s;
+            }
+
+            &:active {
+                border-radius: 15px;
+                background: #434343 !important;
+                letter-spacing: 1px;
+                -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+                -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+                box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+                transition: all 0.3s ease 0s;
+            }
+        }
+    }
 }

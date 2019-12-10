@@ -10,7 +10,8 @@ export function setAuthorizationToken(token){
 
 export function logOut(){
     return dispatch => {
-        localStorage.clear();
+        // localStorage.clear();
+        localStorage.removeItem("token");
         sessionStorage.clear();
         setAuthorizationToken(false);
         dispatch(setUser({}));
@@ -18,6 +19,24 @@ export function logOut(){
 }
 
 export function authUser(route, data) {
+    return async(dispatch) => {
+        try {
+            let rs = await apiCall("post", route, data);
+            const {token, ...user} = rs;
+            localStorage.setItem("token", token);
+            // client store data
+            setAuthorizationToken(token);
+            sessionStorage.setItem("auth", JSON.stringify(user));
+            // redux store
+            dispatch(setUser(user));
+            dispatch(setError());
+        } catch(err) {
+            dispatch(setError(err));
+        }
+    }
+}
+
+export function authSocial(route, data) {
     return async(dispatch) => {
         try {
             let rs = await apiCall("post", route, data);

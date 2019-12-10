@@ -11,6 +11,20 @@ exports.generateAvatar = (req, res, next) => {
     });
 }
 
+exports.genPassword = async(req, res, next) => {
+    try {
+        var text = "";
+        var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 6; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        req.body.password = text;
+        return next();
+    } catch (e) {
+        return next(e);
+    }
+}
+
 exports.generateToken = (id, viewname, email, profileImg, roles) => {
     let userToken = jwt.sign({id, viewname, profileImg, roles}, process.env.SECRET);
     let lockToken = jwt.sign({viewname, email, profileImg}, process.env.SECRET);
