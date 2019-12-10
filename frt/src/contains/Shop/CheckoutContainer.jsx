@@ -21,6 +21,7 @@ const DEFAULT_PEOPLE = {
 function CheckoutContain({user, cart, ...props}) {
     const [order, setOrder] = useState(DEFAULT_ORDER);
     const [people, setPeople] = useState(DEFAULT_PEOPLE);
+    const [stripeToken, setToken] = useState("");
 
     useEffect(() => {
         let isLoaded = false;
@@ -75,16 +76,20 @@ function CheckoutContain({user, cart, ...props}) {
                 }
             })
 
-            let newOrder = await apiCall(...api.orders.create(user._id), {order: order, orderDetails});
+            let newOrder = await apiCall(...api.orders.create(user._id), {order: order, orderDetails, stripeToken});
             if(updatePeople && newOrder) {
                 actCheckout();
                 // reload page to redux take state again from local storage
                 window.location.reload();
-                // return props.history.push(`/shop`);  
+                return props.history.push(`/shop`);  
             }            
         } catch(err) {
             console.log("The confirm is error \n", err);
         }
+    }
+
+    function getBackToken(token) {
+        setToken(token.id);
     }
 
     return (
@@ -97,6 +102,7 @@ function CheckoutContain({user, cart, ...props}) {
             hdConfirm = {hdConfirm}
             hdChange = {hdChange}
             showTotalAmount = {showTotalAmount}
+            getBackToken= {getBackToken}
         />
     );
 }

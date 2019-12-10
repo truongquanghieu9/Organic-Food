@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
 import {Link} from 'react-router-dom';
+import StripeCheckout from "react-stripe-checkout";
 
 import ShopLayout from "contains/Layout/ShopLayout";
 
-const Checkout = ({cart, fee, people, order, user, showTotalAmount, hdChange, hdConfirm, ...props}) => (
+const Checkout = ({cart, fee, people, order, user, showTotalAmount, hdChange, hdConfirm, getBackToken, ...props}) => (
     <ShopLayout {...props}>
         <Fragment>
             {/* BEGIN ACCOUNT */}
@@ -74,6 +75,19 @@ const Checkout = ({cart, fee, people, order, user, showTotalAmount, hdChange, hd
                                                     : order.status = "Unpaid" 
                                                 }
                                                 </b>
+                                                {
+                                                    order.pay_type === "Online payment"
+                                                    ? <StripeCheckout
+                                                        name="Organic food Checkout"
+                                                        description="Fill those below to finish payment"
+                                                        amount={showTotalAmount(cart)*100}
+                                                        token={getBackToken}
+                                                        stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                                                    >
+                                                        <button type="submit" className="btn btn-primary mr-5">Click me to go to online payment</button>
+                                                    </StripeCheckout>
+                                                    : <span/>
+                                                }
                                             </td>
                                                     
                                         </tr>
@@ -100,7 +114,7 @@ const Checkout = ({cart, fee, people, order, user, showTotalAmount, hdChange, hd
                                                     order.pay_type !== "" && cart.length > 0
                                                     ? <button className="blog__button__green" onClick={hdConfirm}><Link to="/shop">CHECKOUT NOW</Link></button>
                                                     : <button className="blog__button__inverse" onClick={hdConfirm} disabled><Link to="">CHECKOUT NOW</Link></button>
-                                                }
+                                                }                                                
                                                 <button className="blog__button__inverse"><Link to='/shop'>CONTINUE SHOPPING</Link></button>
                                             </td>
                                         </tr>

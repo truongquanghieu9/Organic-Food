@@ -1,9 +1,20 @@
 const db = require("../models");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.create = async(req, res, next) => {
     try {
         const {user_id} = req.params;
-        const {orderDetails, order} = req.body;
+        const {orderDetails, order, stripeToken} = req.body;
+
+        if(stripeToken) {
+            let charge = await stripe.charges.create({
+                amount: order.totalPrice,
+                currency: 'usd',
+                source: stripeToken,
+                description: 'Charge for order food',
+            })
+            if(charge.paid) order.status = "Paid by OL";
+        }
 
         // update quantity in food after order
         for(let e of orderDetails) {
