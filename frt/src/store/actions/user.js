@@ -36,6 +36,24 @@ export function authUser(route, data) {
     }
 }
 
+export function authSocial(route, data) {
+    return async(dispatch) => {
+        try {
+            let rs = await apiCall("post", route, data);
+            const {token, ...user} = rs;
+            localStorage.setItem("token", token);
+            // client store data
+            setAuthorizationToken(token);
+            sessionStorage.setItem("auth", JSON.stringify(user));
+            // redux store
+            dispatch(setUser(user));
+            dispatch(setError());
+        } catch(err) {
+            dispatch(setError(err));
+        }
+    }
+}
+
 export function activateUser(id) {
     return async(dispatch) => {
         try {

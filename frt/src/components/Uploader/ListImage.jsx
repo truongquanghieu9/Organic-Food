@@ -2,7 +2,7 @@ import React from "react";
 import {CbImg} from "components/Uploader/CbImg";
 import {Col} from "react-bootstrap";
 
-import Browse from "./Browse";
+// import Browse from "./Browse";
 
 const ListImage = ({images, upImage}) => {
     return images.map((file, i) =>

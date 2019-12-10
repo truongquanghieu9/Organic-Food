@@ -6,7 +6,7 @@ import EmptyBox from "components/Box/EmptyBox";
 import TableCard from "components/Card/TableCard";
 import OrderTable from "components/Table/OrderTable";
 
-const ManageOrder = ({orders, setOrders, hdChange, hdUpdateStatus, hdOrderDetail, ...props}) => (
+const ManageOrder = ({orders, setOrders, hdUpdateStatus, hdOrderDetail, ...props}) => (
     <AppLayoutContain {...props}>
         <GridItem xs={12} sm={12} md={12}>
             <TableCard
@@ -25,7 +25,6 @@ const ManageOrder = ({orders, setOrders, hdChange, hdUpdateStatus, hdOrderDetail
                         tableHead={["ID", "Viewname", "Total price", "Status", "Pay type", "Payment Status", "Order Detail"]}
                         tableData={orders}
                         hdUpdateStatus={hdUpdateStatus}
-                        hdChange={hdChange}
                         hdOrderDetail={hdOrderDetail}
                     />
                     : <EmptyBox

@@ -99,11 +99,11 @@ class OurProductsContainer extends Component {
         let rands = this.rand(products);
 
         // get unique category by newCate
-        let cate = this.getCategory(products);
-        let newCate = this.unique(cate);
+        // let cate = this.getCategory(products);
+        // let newCate = this.unique(cate);
 
         // filter product by "key"
-        let arr = this.filterProducts(products, "juices");
+        // let arr = this.filterProducts(products, "juices");
         return (
             <OurProducts>
                 {

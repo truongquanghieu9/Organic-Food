@@ -90,13 +90,7 @@ class ProductsContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        products: state.products
-    }
-}
-
-function mapState({...user}) {
+function mapStateToProps({...user}) {
     return {
         products: user.products,
         user: user.user.data
@@ -111,4 +105,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 }
 
-export default connect(mapState, mapDispatchToProps)(ProductsContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer);

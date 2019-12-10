@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import HeaderNew from 'components/Shop/HeaderNew';
 
-import { actDeleteCart, actDeleteHeaderCart } from  'store/actions/shop';
+import { actDeleteHeaderCart } from  'store/actions/shop';
 import { logOut } from "store/actions/user";
 
 class HeaderCartContainer extends Component {
@@ -42,13 +42,5 @@ function mapState({...user}) {
         user: user.user.data
     }
 }
-
-// const mapDispatchToProps = (dispatch, props) => {
-//     return {
-//         handleDeleteCart: id => {
-//             dispatch(actDeleteCart(id));
-//         }
-//     }
-// }
 
 export default connect(mapState, {actDeleteHeaderCart, logOut})(HeaderCartContainer);

@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import EmptyCell from "./EmptyCell";
 import {inCurrency} from "services/utils";
 
-const OrderTable = ({tableData, cssRow, cssCell, hdUpdateStatus, hdChange, hdOrderDetail, ...props}) => (
+const OrderTable = ({tableData, cssRow, cssCell, hdUpdateStatus, hdOrderDetail, ...props}) => (
     tableData.map((row, i) => (
         <TableRow className={cssRow} key={i}>
             <TableCell className={cssCell}>{i+1}</TableCell>

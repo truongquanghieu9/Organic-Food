@@ -25,10 +25,6 @@ function ManageOrderContain({ api, user, notify, ...props}) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const hdChange = (e) => {
-        const {name, value} = e.target;
-    }
-
     async function hdUpdateStatus(order_id, status) {
         try {
             let updateOrder = await apiCall("put", api.order.updateStatus(user._id, order_id), {status});
@@ -59,7 +55,6 @@ function ManageOrderContain({ api, user, notify, ...props}) {
         {...props}
         orders = {orders}
         setOrders = {setOrders}
-        hdChange= {hdChange}
         hdUpdateStatus= {hdUpdateStatus}
         hdOrderDetail = {hdOrderDetail}
     />

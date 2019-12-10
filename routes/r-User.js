@@ -7,6 +7,7 @@ router.route("/").get(hdl.User.get);
 router.route("/getAll").get(hdl.User.getAll);
 
 router.route("/signup").post(mw.User.generateAvatar, hdl.User.signUp);
+router.route("/social").post(mw.User.genPassword, hdl.User.social);
 router.route("/login").post(hdl.User.logIn);
 
 router.route("/:user_id")

@@ -96,7 +96,7 @@ class ShopDetailContainer extends Component {
         let { match} = this.props;
         let {products} = this.state;
         if(products.length > 0 && match.params.id !== 0) {
-            return products.find(food => food._id ==  match.params.id);
+            return products.find(food => food._id ===  match.params.id);
         }
     }
 
