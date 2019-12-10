@@ -15,6 +15,7 @@ const FoodTable = ({tableData, cssRow, cssCell, options, ...props}) => (
         <TableRow className={cssRow} key={i}>
             <TableCell className={cssCell}>{i+1}</TableCell>
             <TableCell className={cssCell}>{row.name} </TableCell>
+            <TableCell className={cssCell}>{row.star} </TableCell>
             <TableCell className={cssCell}>{row.quantity} </TableCell>
             <TableCell className={cssCell}>{row.price} </TableCell>
             <TableCell className={cssCell}>{row.discount} </TableCell>

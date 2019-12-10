@@ -3,5 +3,5 @@ export function inCurrency(num) {
         style: "currency",
         currency: "USD",
         currencyDisplay: "code"
-    }).format(num*10);
+    }).format(num);
 }

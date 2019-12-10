@@ -8,7 +8,8 @@ exports.getUploadData = async(req, res, next) => {
             let imgList = [];
             if(images){
                 for(let img of images){
-                    let image = await cloudinary.v2.uploader.upload(img.path);
+                    // let image = await cloudinary.v2.uploader.upload(img.path);
+                    let image = await cloudinary.v2.uploader.upload(img.path, {format: "jpg", width: 380, height: 434, crop: "scale"});
                     let uploadImg = {
                         link: image.secure_url,
                         cloud_id: image.public_id

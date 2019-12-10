@@ -62,6 +62,39 @@ exports.get = async(req, res, next) => {
     }
 }
 
+exports.social = async(req, res, next) => {
+    try {
+        // Find out if the user data has been stored in the system
+        let foundUser = await db.User.findOne({email: req.body.email});
+        let role, user;
+        if(!foundUser) {
+            user = await db.User.create({...req.body, active: true});
+
+            // add role for user
+            role = await db.Role.findOne({code: "001"});
+            await db.UserRole.create({role: role._id, user: user._id});
+
+            // create people
+            await db.People.create({user_id: user._id});
+        } else {
+            // get role of user
+            let userRole = await db.UserRole.findOne({user: foundUser._id}).populate("role").exec();
+
+            role = userRole.role ? userRole.role : false;
+
+            user = foundUser;
+        }
+        let {_id, viewname, email, active, avatar} = user;
+
+        // Generate token for storing on client
+        let token = genToken(_id, role);
+
+        return res.status(200).json({_id, viewname, email, active, avatar, role, token});
+    } catch (e) {
+        return next(e);
+    }
+}
+
 exports.getAll = async(req, res, next) => {
     try {
         let users = await db.User.find().exec();
@@ -98,6 +131,15 @@ exports.getOne = async(req, res, next) => {
 
         // return email for updating profile
         return res.status(200).json({_id, viewname, email, avatar, role, active, people_id});
+    } catch(err) {
+        return next(err);
+    }
+}
+
+exports.getPeople = async(req, res, next) => {
+    try {
+        let foundPeople = await db.People.findOne({user_id: req.params.user_id}).exec();
+        return res.status(200).json(foundPeople);
     } catch(err) {
         return next(err);
     }
@@ -163,6 +205,22 @@ exports.update = async(req, res, next) => {
     }
 }
 
+
+exports.getAllOrderDetail = async(req, res, next) => {
+    try {
+        let getOrderDetail = await db.OrderDetail.find()
+            .populate({
+                path: "food_id",
+                populate: {
+                    path: "category_id"
+                }
+            })
+            .exec();
+        return res.status(200).json(getOrderDetail);
+    } catch(err) {
+        return next(err);
+    }
+}
 
 exports.contact = async(req, res, next) => {
     try {

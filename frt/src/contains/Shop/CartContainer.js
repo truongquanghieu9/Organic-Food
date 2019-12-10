@@ -24,17 +24,18 @@ class CartContainer extends Component {
     showTotalAmount = cart => {
         let total = 0;
         for (let item of cart) {
-            total += (item.product.newPrice * item.quantity);
+            total += (item.product.discount * item.quantity);
         }
         return total;
     }
-    
+
     render() {
 
-        let { cart, products, handleDeleteCart, handleUpdateCart } = this.props;
+        let { cart, products, handleDeleteCart, handleUpdateCart, user } = this.props;
         let { quantity, fee } = this.state;
         return (
             <Cart
+                user={user}
                 cart={cart}
                 fee={fee}
                 products={products}

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Menu from './Menu';
 
-const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
+const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
     <Fragment>
         {/* BEGIN HEADER */}
         <header className="header">
@@ -69,13 +69,13 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
                                             <i className="far fa-user" />
                                                 <b className="nav-link" > {user.viewname} </b>|
                                                 {
-                                                    user.viewname 
+                                                    user.viewname
                                                     ? <button className="blog__button ml-2 pl-2 pr-2" onClick={props.logOut}>Logout</button>
-                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login </a> 
+                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login / Register </a>
                                                 }
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>
@@ -122,7 +122,18 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
                                         {/* Begin HeaderCart */}
                                         <div className="cart__items">
                                             {/* Begin HeaderCartItem */}
-                                                {showHeaderCartItem}
+                                            {
+                                                cart.map((item, i) => (
+                                                    <div className="cart__item d-flex align-items-center" key={i}>
+                                                        <img src={item.product.image_id[0].link} alt={item.product.name} />
+                                                        <div className="cart__info">
+                                                            <h6>{item.product.name}</h6>
+                                                            <div>{item.quantity} x <span className="amount">{`$ ${item.product.discount}.00`}</span></div>
+                                                        </div>
+                                                        <button className="remove btn__shopnow" onClick={() => handleDeleteCart(item.product._id)}>×</button>
+                                                    </div>
+                                                ))
+                                            }
                                             {/* End HeaderCartItem */}
                                         </div>
                                         {/* End HeaderCart */}
@@ -134,7 +145,11 @@ const Header = ({cart, showHeaderCartItem, showTotalAmount, user,...props}) => (
                                             </div>
                                             <div className="cart__button">
                                                 <button className="blog__button__green"><a href='/cart'>VIEW CART</a></button>
-                                                <button className="blog__button__inverse"><Link to="/">CHECKOUT</Link></button>
+                                                {
+                                                    user.viewname
+                                                    ? <button className="blog__button__inverse"><Link to="/checkout">CHECKOUT</Link></button>
+                                                    : <button className="blog__button__inverse"><Link to="/login">LOGIN BEFORE CHECKOUT</Link></button>
+                                                }
                                             </div>
                                         </div>
                                         {/* End HeaderCartTotal */}

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import ShopLayout from "contains/Layout/ShopLayout";
 import ShopItem from "./ShopItem";
 
-const Shop = ({products, currentProduct, pageNumbers, renderProduct, renderPageNumbers, handlAddToCart, showRating}) => (
+const Shop = ({products, currentProduct, pageNumbers, renderPageNumbers, handlAddToCart, showRating, productStatus}) => (
     <ShopLayout>
         <Fragment>
 
@@ -25,18 +25,17 @@ const Shop = ({products, currentProduct, pageNumbers, renderProduct, renderPageN
                         </div>
                         <div className="col-md-6 text-right">
                             <div className="filter">
-                                <span className="pr-4 showing">Showing 1–16 of {`${products.length}`} results</span>
+                                <span className="pr-4 showing">Showing 1–12 of {`${products.length}`} results</span>
                                 <span className="pl-4 filter__bar"><a href="#1">Filter <i className="fas fa-bars" /></a></span>
                             </div>
                         </div>
                     </div>
                     <div className="row shop__items">
-
-                        {/* {renderProduct(currentProduct)} */}
                         <ShopItem
-                            product = {currentProduct}
+                            item = {currentProduct}
                             handlAddToCart={handlAddToCart}
                             showRating={showRating}
+                            productStatus={productStatus}
                         />
 
                     </div>

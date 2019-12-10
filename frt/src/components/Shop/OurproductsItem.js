@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-const OurProductsItem = ({ product, handlAddToCart, showRating}) => (
+const OurProductsItem = ({ product, handlAddToCart, showRating, productStatus}) => (
     <Fragment>
         <div className="col-md-3 pt-5">
             <div className="item">
                 <div className="products__thumbnail">
-                    <img src={product.src1} alt={product.name} />
-                    <img src={product.src2} className="product_image_back" alt={product.name} />
+                    <img src={product.image_id[0].link} alt="" />
+                    <img src={product.image_id[1].link} className="product_image_back" alt={product.name} />
                     <div className="products__sale">
-                        {product.status === 'sale' ? <span className="onsale">SALE</span> : ''}
-                        {product.status === 'soldout' ? <span className="onsoldout">SOLD OUT</span> : ''}
-                        {product.status === 'sale' ? <span className="onsale">HOT</span> : ''}
+                        {productStatus(product) === 'sale' ? <span className="onsale">SALE</span> : ''}
+                        {productStatus(product) === 'soldout' ? <span className="onsoldout">SOLD OUT</span> : ''}
+                        {productStatus(product) === 'hot' ? <span className="onhot">HOT</span> : ''}
                     </div>
                     <div className="products_group_button">
                         <div className="add__cart products_group_item">
@@ -33,30 +33,18 @@ const OurProductsItem = ({ product, handlAddToCart, showRating}) => (
                     </div>
                 </div>
                 <div className="products__info">
-                    <Link to={`/shop/${product.id}`}>{product.name}</Link>
+                    <Link to={`/shop/${product._id}`}>{product.name}</Link>
                     <div className="rating">
 
-                        {showRating(product.rating)}
+                        {showRating(product.star)}
 
                     </div>
-                    <span className="old__price">{product.oldPrice > product.newPrice ? `$ ${product.oldPrice}.00` : ""}</span>
-                    <span className="price">{`$ ${product.newPrice}.00`}</span>
+                    <span className="old__price">{product.price > product.discount ? `$ ${product.price}.00` : ""}</span>
+                    <span className="price">{`$ ${product.discount}.00`}</span>
                 </div>
             </div>
         </div>
     </Fragment>
 )
-
-
-// class OurProductsItem extends Component {
-//     render() {
-//
-//         let { product, handlAddToCart, showRating } = this.props;
-//
-//         return (
-//
-//         );
-//     }
-// }
 
 export default OurProductsItem;

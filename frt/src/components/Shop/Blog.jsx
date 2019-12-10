@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import ShopLayout from "contains/Layout/ShopLayout";
 
 const Blog = ({}) => (

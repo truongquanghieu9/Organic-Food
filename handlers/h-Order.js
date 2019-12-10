@@ -1,9 +1,29 @@
 const db = require("../models");
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.create = async(req, res, next) => {
     try {
         const {user_id} = req.params;
-        const {orderDetails, order} = req.body;
+        const {orderDetails, order, stripeToken} = req.body;
+
+        if(stripeToken) {
+            let charge = await stripe.charges.create({
+                amount: order.totalPrice,
+                currency: 'usd',
+                source: stripeToken,
+                description: 'Charge for order food',
+            })
+            if(charge.paid) order.status = "Paid by OL";
+        }
+
+        // update quantity in food after order
+        for(let e of orderDetails) {
+            let foundFood = await db.Food.findById(e.food_id);
+            if(foundFood) {
+                foundFood.quantity -= e.quantity;
+                await foundFood.save(); 
+            }
+        }
 
         // Create Order and get order_id
         let newOrder = await db.Order.create({...order, user_id});
@@ -16,9 +36,6 @@ exports.create = async(req, res, next) => {
             });
         }
 
-        // Check pay_type and make request
-        // if(order.pay_type === "OP")
-
         // send mail to customer
 
         return res.status(200).json(newOrder);
@@ -30,7 +47,8 @@ exports.create = async(req, res, next) => {
 exports.get = async(req, res, next) => {
     try {
         const {user_id} = req.params;
-        let getOrder = await db.Order.find(user_id ? {user_id} : {});
+        // let getOrder = await db.Order.find(user_id ? {user_id} : {});
+        let getOrder = await db.Order.find().populate("user_id").exec();
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
@@ -40,7 +58,14 @@ exports.get = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     try {
         const {order_id} = req.params;
-        let getOrder = await db.Order.findById(order_id).populate("user_id").exec();
+        let getOrder = await db.Order.findById(order_id)
+            .populate({
+                path: "user_id",
+                populate: {
+                    path: "people_id"
+                }
+            })
+            .exec();
         return res.status(200).json(getOrder);
     } catch(err) {
         return next(err);
@@ -56,6 +81,23 @@ exports.update = async(req, res, next) => {
             await foundOrder.save();
         }
         return res.status(200).json(foundOrder);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+exports.getOrderDetail = async(req, res, next) => {
+    try {
+        const {order_id} = req.params;
+        let getOrderDetail = await db.OrderDetail.find({order_id})
+            .populate({
+                path: "food_id",
+                populate: {
+                    path: "category_id"
+                }
+            })
+            .exec();
+        return res.status(200).json(getOrderDetail);
     } catch(err) {
         return next(err);
     }

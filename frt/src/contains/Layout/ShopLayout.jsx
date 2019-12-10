@@ -8,7 +8,7 @@ import {getAccess} from "services/credentialVerify";
 // import { actFetchProductsRequest } from 'store/actions/shop';
 
 const ShopLayout = ({...props}) => (
-    
+
     <Fragment>
         <HeaderContainer/>
             <div>
@@ -17,6 +17,14 @@ const ShopLayout = ({...props}) => (
         <Footer />
     </Fragment>
 );
+
+function mapState({user}) {
+    return {
+        isPermit: getAccess(user.data.role),
+    }
+}
+
+export default connect(mapState, null)(ShopLayout);
 
 // class ShopLayout extends Component {
 //     componentDidMount() {
@@ -44,11 +52,3 @@ const ShopLayout = ({...props}) => (
 //         }
 //     }
 // }
-
-function mapState({user}) {
-    return {
-        isPermit: getAccess(user.data.role),
-    }
-}
-
-export default connect(mapState, null)(ShopLayout);

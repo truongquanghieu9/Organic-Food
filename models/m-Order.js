@@ -3,7 +3,7 @@ const db = require("../models");
 const {spliceId, casDelete} = require("../utils/dbSupport");
 
 const orderSchema = new mongoose.Schema({
-    people_id: {
+    user_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
@@ -16,7 +16,7 @@ const orderSchema = new mongoose.Schema({
         type: String,
         default: "Waiting"
     }
-}, {timestamp: true});
+}, {timestamps: true});
 
 orderSchema.pre("remove", async function(next){
     // try {

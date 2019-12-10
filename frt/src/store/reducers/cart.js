@@ -7,19 +7,23 @@ let initialState = data ? data : [];
 let findIndex = (cart, id) => {
     let index = -1;
     for (let i = 0; i < cart.length; i++) {
-        if (cart[i].product.id === id) {
+        if (cart[i].product._id === id) {
             return index = i;
         }
     }
     return index;
 }
 
+// const findIndex = (cart, id) => (
+//     cart.findIndex(c => c.id === id)
+// );
+
 const cart = (state = initialState, action) => {
     let { product, quantity } = action
     let index = -1;
     switch (action.type) {
         case types.ADD_TO_CART:
-            index = findIndex(state, product.id);
+            index = findIndex(state, product._id);
             if (index !== -1) {
                 state[index].quantity += quantity;
             } else {
@@ -43,6 +47,9 @@ const cart = (state = initialState, action) => {
                 state[index].quantity = quantity;
             }
             localStorage.setItem("cart", JSON.stringify(state));
+            return [...state];
+        case types.DELETE_ALL_CART:
+            state = [];
             return [...state];
         default: return [...state];
     }

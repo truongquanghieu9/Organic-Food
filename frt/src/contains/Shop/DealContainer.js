@@ -1,18 +1,28 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import api from "contents/display/Shop";
+import { apiCall } from "services/api";
 
 import Deal from 'components/Shop/Deal';
 import DealItemCarouselNew from 'components/Shop/DealItemCarouselNew';
 import DealItemNew from 'components/Shop/DealItemNew';
 
-import {productList} from "services/testShopData/FakeData"
 import { actAddToCart } from 'store/actions/shop';
 
 class DealContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: productList
+            products: []
+        }
+    }
+
+    async componentDidMount() {
+        try {
+            let listFood = await apiCall(...api.food.get());
+            this.setState({products: listFood})
+        } catch (err){
+            console.log(err);
         }
     }
 
@@ -21,7 +31,6 @@ class DealContainer extends Component {
     };
 
     showRating = rating => {
-
         let result = [];
         if (rating >= 0) {
             for (let i = 1; i <= rating; i++) {
@@ -39,36 +48,33 @@ class DealContainer extends Component {
 
     filterProducts = (products) => {
         return products.filter((product) =>
-            product.status === 'sale'
+            product.price-product.discount > 0
         );
     }
 
     render() {
-
         let { products } = this.state;
-        let filterProducts = this.filterProducts(products);
+        let filterSale = this.filterProducts(products);
         let prod = [];
         if(products.length > 0) {
             for(let i = 0; i < 8; i++){
-                prod.push(filterProducts[i]);
+                prod.push(filterSale[i]);
             }
         }
 
         return (
             <Fragment>
-
                 <Deal>
-
                     <div className="col-md-4 px-0">
                         <div className="owl-carousel deal-carousel owl-theme">
-
                             {
-                                filterProducts.map((val, i) => (
+                                filterSale.map((val, i) => (
                                     <DealItemCarouselNew
                                         product={val}
                                         key={i}
                                         handlAddToCart={this.props.handlAddToCart}
                                         showRating={this.showRating}
+                                        productStatus={this.productStatus}
                                     />
                                 ))
                             }
@@ -87,31 +93,11 @@ class DealContainer extends Component {
                                 />
                             ))
                         }
-                        {/* {
-                            filterProducts.map((val, i) => (
-                                i > 2
-                                ? <DealItemNew
-                                    product={val}
-                                    key={i}
-                                    handlAddToCart={this.props.handlAddToCart}
-                                    showRating={this.showRating}
-                                />
-                                : <span key={i}/>
-                            ))
-                        } */}
-
                         </div>
                     </div>
                 </Deal>
-
             </Fragment>
         );
-    }
-}
-
-const mapStateToProps = state => {
-    return {
-        products: state.products
     }
 }
 
