@@ -6,7 +6,6 @@ import {getAccess, getDirectPath} from "services/credentialVerify";
 
 const Routes = ({verifyRoute, directPath, ...props}) => {
     let accessRoutes = routes.filter(v => verifyRoute(v.access));
-    console.log(accessRoutes);
     return (
         <Switch>
             {
@@ -32,12 +31,3 @@ function mapState({user}) {
 }
 
 export default connect(mapState)(withRouter(Routes));
-
-// accessRoutes.map((r, i) => {
-//     const {Component, display} = r;
-//     return (
-//         <Route path={r.path} key={i}
-//             render={props => (<Component {...display} {...props}/>)}
-//         />
-//     )
-// })

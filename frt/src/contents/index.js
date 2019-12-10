@@ -29,14 +29,6 @@ import Account from "components/Shop/Account";
 import CheckoutContain from "contains/Shop/CheckoutContainer";
 import HomePage from "components/Page/HomePage";
 
-import CartContain from "contains/Shop/CartContainer";
-import ShopDetailContain from "contains/Shop/ShopDetailContainer";
-import ShopContain from "contains/Shop/ShopContainer";
-import Portfolio from "contains/Shop/PortfolioContainer";
-import Blog from "components/Shop/Blog";
-import Account from "components/Shop/Account";
-import HomePage from "components/Page/HomePage";
-
 import dashboard from "./display/Dashboard";
 import login from "./display/Login";
 import register from "./display/Register";
