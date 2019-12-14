@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Menu from './Menu';
 
-const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
+const Header = ({cart, handleDeleteCart, showTotalAmount, user, searchProduct, searchKey, handleChange, ...props}) => (
     <Fragment>
         {/* BEGIN HEADER */}
         <header className="header">
@@ -111,10 +111,10 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
                             <form className="form-group">
                                 <div className="search">
                                     <div className="search__field">
-                                        <input type="text" placeholder="Search for products" />
+                                        <input type="text" value={searchKey} name="searchKey" onChange={handleChange} placeholder="Search for products" />
                                     </div>
                                     <div className="search__button">
-                                        <input type="button" />
+                                        <input type="button" name="searchKey" onClick={() => window.location.href=`/search/${searchKey}`}/>
                                     </div>
                                 </div>
                             </form>
