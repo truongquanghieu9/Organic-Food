@@ -16,7 +16,8 @@ const Cart = ({user, cart, fee, handleChange, showTotalAmount, products, quantit
                         <table className="cart__table text-center table">
                             <thead>
                                 <tr>
-                                    <th colSpan={2}>ITEM</th>
+                                    <th>ITEM</th>
+                                    <th>NAME</th>
                                     <th>PRICE</th>
                                     <th>QUANTITY</th>
                                     <th>TOTAL</th>
@@ -44,7 +45,7 @@ const Cart = ({user, cart, fee, handleChange, showTotalAmount, products, quantit
                         </table>
                     </div>
                     {/* End CartTable */}
-                    {/* Begin CartTotal */}                   
+                    {/* Begin CartTotal */}
                     <div className="col-md-3 px-0">
                         <div className="cart__total">
                             <table className="table">

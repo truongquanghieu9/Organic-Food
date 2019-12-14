@@ -90,8 +90,8 @@ class ShopDetailContainer extends Component {
             status= "hot";
         }
         return status;
-    } 
-    
+    }
+
     getProduct = () => {
         let { match} = this.props;
         let {products} = this.state;

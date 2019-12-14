@@ -205,7 +205,18 @@ exports.update = async(req, res, next) => {
     }
 }
 
+// get order of user
+exports.getUserOrdered = async(req, res, next) => {
+    try {
+        let getOrderUser = await db.Order.find({user_id: req.params.user_id}).exec();
 
+        return res.status(200).json(getOrderUser);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+// get order for statistic
 exports.getAllOrderDetail = async(req, res, next) => {
     try {
         let getOrderDetail = await db.OrderDetail.find()

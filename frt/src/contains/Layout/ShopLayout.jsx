@@ -8,7 +8,7 @@ import {getAccess} from "services/credentialVerify";
 // import { actFetchProductsRequest } from 'store/actions/shop';
 
 const ShopLayout = ({...props}) => (
-    
+
     <Fragment>
         <HeaderContainer/>
             <div>
@@ -52,4 +52,3 @@ export default connect(mapState, null)(ShopLayout);
 //         }
 //     }
 // }
-

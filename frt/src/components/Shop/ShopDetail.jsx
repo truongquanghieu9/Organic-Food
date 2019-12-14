@@ -64,11 +64,11 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                                     </div>
                                 </div>
                                 {
-                                    productStatus(product) === 'soldout' 
+                                    productStatus(product) === 'soldout'
                                     ? <button onClick={() => handlAddToCart(product)} className="btnDisable" disabled><i className="fas fa-shopping-cart"  /> ADD TO CART</button>
                                     : <button onClick={() => handlAddToCart(product)} className="btnAdd"><i className="fas fa-shopping-cart"  /> ADD TO CART</button>
                                 }
-                                
+
                                 <div className="extra">
                                     <a href="#1"><i className="far fa-heart" /></a>
                                 </div>
@@ -156,7 +156,7 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
             </section>
             {/* END ITEM DESCRIPT */}
         </div>
-        
+
         <ProductView/>
     </ShopLayout>
 )

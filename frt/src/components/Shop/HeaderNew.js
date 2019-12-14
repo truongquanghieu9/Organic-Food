@@ -68,14 +68,25 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, ...props}) => (
                                         <div className="login_signup">
                                             <i className="far fa-user" />
                                                 <b className="nav-link" > {user.viewname} </b>|
+                                                    <span>
+                                                        {
+                                                            user.viewname
+                                                            ? <a href="/order">
+                                                               <b> View my order </b>
+                                                               |
+                                                            </a>
+                                                            : <span/>
+                                                        }
+                                                    </span>
+                                                
                                                 {
-                                                    user.viewname 
+                                                    user.viewname
                                                     ? <button className="blog__button ml-2 pl-2 pr-2" onClick={props.logOut}>Logout</button>
-                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login / Register </a> 
+                                                    : <a className="blog__button ml-2 pl-2 pr-2" href="/login"> Login / Register </a>
                                                 }
                                         </div>
                                     </li>
-                                    
+
                                 </ul>
                             </div>
                         </div>

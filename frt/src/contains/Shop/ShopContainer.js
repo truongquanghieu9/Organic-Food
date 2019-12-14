@@ -60,7 +60,7 @@ class ShopContainer extends Component {
             status= "hot";
         }
         return status;
-    } 
+    }
 
     handleClick = event => {
         this.setState({

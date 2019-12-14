@@ -16,7 +16,7 @@ const ShopItem = ({item, handlAddToCart, showRating, productStatus}) => (
                     <div className="products_group_button">
                         <div className="add__cart products_group_item">
                             {
-                                productStatus(product) === 'soldout' 
+                                productStatus(product) === 'soldout'
                                 ? <a><i className="fas fa-shopping-cart" /></a>
                                 : <a onClick={() => handlAddToCart(product)}><i className="fas fa-shopping-cart" /></a>
                             }

@@ -50,7 +50,7 @@ class ProductsContainer extends Component {
             status= "hot";
         }
         return status;
-    } 
+    }
 
     render() {
 

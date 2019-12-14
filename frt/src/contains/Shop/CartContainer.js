@@ -28,7 +28,7 @@ class CartContainer extends Component {
         }
         return total;
     }
-    
+
     render() {
 
         let { cart, products, handleDeleteCart, handleUpdateCart, user } = this.props;

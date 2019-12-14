@@ -62,7 +62,7 @@ class OurProductsContainer extends Component {
             status= "hot";
         }
         return status;
-    } 
+    }
 
     //Flattens passed array in one dimensional array
     flatten = (arr) => {

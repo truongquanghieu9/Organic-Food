@@ -31,12 +31,3 @@ function mapState({user}) {
 }
 
 export default connect(mapState)(withRouter(Routes));
-
-// accessRoutes.map((r, i) => {
-//     const {Component, display} = r;
-//     return (
-//         <Route path={r.path} key={i}
-//             render={props => (<Component {...display} {...props}/>)}
-//         />
-//     )
-// })
