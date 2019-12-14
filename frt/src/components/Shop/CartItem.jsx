@@ -4,10 +4,10 @@ const CartItem = ({cart, quantity, handleChange, handleDeleteCart, handleUpdateC
     cart.map((item, i) => (
         <tr className="cart__item" key={i}>
             <td className="cart__thumbnail">
-                <a href="#1"><img src={item.product.image_id[0].link} alt={item.product.name} /></a>
+                <a href="#1"><img src={item.product.image_id[0].link} alt="#"/></a>
             </td>
             <td className="cart__name">
-                <a href="#1">{item.product.name}</a>
+                {item.product.name}
             </td>
             <td className="cart__price">
                 <span className="amount">{`$ ${item.product.discount}.00`}</span>

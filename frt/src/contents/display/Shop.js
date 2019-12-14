@@ -8,7 +8,8 @@ const food = {
 }
 
 const user = {
-    getPeople: (user_id) => ["get", `/api/user/${user_id}/getpeople`]
+    getPeople: (user_id) => ["get", `/api/user/${user_id}/getpeople`],
+    getUserOrdered: (user_id) => ["get", `/api/user/${user_id}/getUserOrdered`]
 }
 
 const people = {
@@ -22,6 +23,7 @@ const orders = {
     create: (user_id) => ["post", `/api/user/${user_id}/orders`],
     delete: (user_id, order_id) => ["delete", `/api/user/${user_id}/orders/${order_id}`],
     update: (user_id, order_id) => ["put", `/api/user/${user_id}/orders/${order_id}`],
+    getOrderDetail: (user_id, order_id) => ["get", `/api/user/${user_id}/orders/${order_id}/orderDetail`],
 }
 
 export default {

@@ -16,7 +16,8 @@ const Cart = ({user, cart, fee, handleChange, showTotalAmount, products, quantit
                         <table className="cart__table text-center table">
                             <thead>
                                 <tr>
-                                    <th colSpan={2}>ITEM</th>
+                                    <th>ITEM</th>
+                                    <th>NAME</th>
                                     <th>PRICE</th>
                                     <th>QUANTITY</th>
                                     <th>TOTAL</th>

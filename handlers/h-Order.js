@@ -96,7 +96,14 @@ exports.getOrderDetail = async(req, res, next) => {
                     path: "category_id"
                 }
             })
+            .populate({
+                path: "food_id",
+                populate: {
+                    path: "image_id"
+                }
+            })
             .exec();
+        console.log("run");
         return res.status(200).json(getOrderDetail);
     } catch(err) {
         return next(err);
