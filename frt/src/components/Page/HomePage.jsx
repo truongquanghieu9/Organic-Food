@@ -12,9 +12,9 @@ import Testimonial from 'components/Shop/Testimonial';
 import OurBlog from 'components/Shop/OurBlog';
 import Brand from 'components/Shop/Brand';
 
-function Home() {
+function Home(...props) {
     return (
-        <ShopLayout >
+        <ShopLayout {...props}>
                 <Introduce />
 
             <ProductsContainer />

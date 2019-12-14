@@ -1,4 +1,5 @@
 const db = require("../models");
+const mail = require("../utils/mail");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.create = async(req, res, next) => {
@@ -28,6 +29,8 @@ exports.create = async(req, res, next) => {
         // Create Order and get order_id
         let newOrder = await db.Order.create({...order, user_id});
 
+        let user = await db.User.findById(user_id).exec();
+
         // add order_id for orderDetail
         for(let e of orderDetails) {
             await db.OrderDetail.create({
@@ -37,6 +40,7 @@ exports.create = async(req, res, next) => {
         }
 
         // send mail to customer
+        await mail.orderUser(user.email, user.viewname, order.pay_type, order.status, order.totalPrice);
 
         return res.status(200).json(newOrder);
     } catch(err) {

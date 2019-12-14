@@ -20,6 +20,7 @@ import Order from '@material-ui/icons/LocalMall';
 import Soldout from '@material-ui/icons/RemoveShoppingCart';
 import Report from '@material-ui/icons/InsertChartOutlinedOutlined';
 
+import SearchContain from "contains/Shop/SearchContainer";
 import OrderDetailContain from "contains/Shop/OrderDetailContainer";
 import OrderUserContain from "contains/Shop/OrderUserContainer";
 import CartContain from "contains/Shop/CartContainer";
@@ -156,6 +157,11 @@ const routes = [
         path: "/shop/:id",
         access: ["guestAccess", "peopleAccess"],
         Component: ShopDetailContain
+    },
+    {
+        path: "/search/:searchKey",
+        access: ["guestAccess", "peopleAccess"],
+        Component: SearchContain
     },
     {
         path: "/order/:order_id",

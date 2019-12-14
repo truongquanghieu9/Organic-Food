@@ -10,7 +10,7 @@ import {getAccess} from "services/credentialVerify";
 const ShopLayout = ({...props}) => (
 
     <Fragment>
-        <HeaderContainer/>
+        <HeaderContainer {...props}/>
             <div>
                 {props.children}
             </div>
