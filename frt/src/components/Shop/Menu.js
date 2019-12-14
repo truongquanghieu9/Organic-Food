@@ -160,7 +160,7 @@ const Menu = () => (
                                     </div>
                                 </div>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <NavLink to='/shortcode' exact activeClassName="active" className="nav-link">SHORTCODE <i className="fas fa-angle-down" /></NavLink>
                                 <div className="shortcode__wrapper">
                                     <div className="shortcode__items">
@@ -269,7 +269,7 @@ const Menu = () => (
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <NavLink to='/about' exact activeClassName="active" className="nav-link">ABOUT US</NavLink>
                             </li>

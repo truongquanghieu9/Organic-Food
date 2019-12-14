@@ -103,7 +103,7 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, searchProduct, s
                         <div className="col-md-4 logo__wrapper">
                             <div className="logo">
                                 <Link to="/" href="#1">
-                                    <img src="/img/logo.png" alt="Boxshop" title="Boxshop" />
+                                    <img src="/img/organic-logo2.png" alt="Boxshop" title="Boxshop" />
                                 </Link>
                             </div>
                         </div>

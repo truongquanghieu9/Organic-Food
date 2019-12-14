@@ -90,4 +90,16 @@ Electric number at ${moment().format("DD-MM-YYYY")} is ${amount}.`;
 	return await send(GMAILUSER, subject, text);
 }
 
-module.exports = {send, activate, getRoom, leaveRoom, contactUser, amountElectric}
+async function orderUser(to, viewname, pay_type, status, totalPrice) {
+	let subject = emoji.emojify(`:zap: ${viewname} from ORGANIC FOOD had sent`);
+	let text = `
+Hello ${viewname},
+
+This is mail is automatic please re-send mail
+PAY TYPE: ${pay_type}
+ORDER STATUS: ${status}
+TOTAL PRICE: ${totalPrice}`;
+	return await send(to, subject, text);
+}
+
+module.exports = {send, activate, getRoom, leaveRoom, contactUser, amountElectric, orderUser}
