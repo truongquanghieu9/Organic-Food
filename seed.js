@@ -53,4 +53,5 @@ async function createOwner() {
 module.exports = async() => {
     await createRole();
     await createOwner();
+    console.log("[ SEED RUN ]");
 };

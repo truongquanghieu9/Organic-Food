@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "engines": {
-        "node": "8.11.2",
+        "node": "10.17.0",
         "npm": "6.10.1"
     },
     "main": "index.js",
@@ -42,6 +42,7 @@
     "devDependencies": {
         "expect.js": "^0.3.1",
         "mocha": "^6.2.2",
-        "node-mocks-http": "^1.8.0"
+        "node-mocks-http": "^1.8.0",
+        "nodemon": "^2.0.2"
     }
 }
