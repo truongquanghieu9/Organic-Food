@@ -15,7 +15,8 @@ class SearchContainer extends Component {
         this.state = {
             currentPage: 1,
             productsPerPage: 12,
-            products: []
+            products: [],
+            keyValue: ""
         }
     }
 
@@ -25,11 +26,62 @@ class SearchContainer extends Component {
             const getFuse = new Fuse(listFood, {
                 keys: ["name"]
             })
-            let searchData = getFuse.search(this.props.match.params.searchKey);
-            this.setState({products: searchData})
+            let keygen = this.props.match.params.searchKey;
+            if(keygen === "p_low" || keygen === "p_high" || keygen === "r_low" || keygen === "r_high") {
+                if(keygen === "p_low") {
+                    let sortFromLow = listFood.reduce((sorted, el) => {
+                        let count = 0;
+                        while(count < listFood.length && el.discount > (sorted[count] ? sorted[count].discount : sorted[count])) {
+                            count++;
+                        }
+                        sorted.splice(count, 0, el);
+                        return sorted;
+                    }, []);
+                    this.setState({products: sortFromLow});
+                } else if(keygen === "p_high") {
+                    let sortFromHigh = listFood.reduce((sorted, el) => {
+                        let count = 0;
+                        while(count < listFood.length && el.discount < (sorted[count] ? sorted[count].discount : sorted[count])) {
+                            count++;
+                        }
+                        sorted.splice(count, 0, el);
+                        return sorted;
+                    }, []);
+                    this.setState({products: sortFromHigh});
+                } else if(keygen === "r_low") {
+                    let sortFromLow = listFood.reduce((sorted, el) => {
+                        let count = 0;
+                        while(count < listFood.length && el.star > (sorted[count] ? sorted[count].star : sorted[count])) {
+                            count++;
+                        }
+                        sorted.splice(count, 0, el);
+                        return sorted;
+                    }, []);
+                    this.setState({products: sortFromLow});
+                } else if(keygen === "r_high") {
+                    let sortFromHigh = listFood.reduce((sorted, el) => {
+                        let count = 0;
+                        while(count < listFood.length && el.star < (sorted[count] ? sorted[count].star : sorted[count])) {
+                            count++;
+                        }
+                        sorted.splice(count, 0, el);
+                        return sorted;
+                    }, []);
+                    this.setState({products: sortFromHigh});
+                }
+            } else {
+                let searchData = getFuse.search(keygen);
+                this.setState({products: searchData});
+            }
         } catch (err){
             console.log(err);
         }
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     filterProducts = (products) => {
@@ -84,7 +136,7 @@ class SearchContainer extends Component {
             result = pageNumbers.map(number => {
                 this.state.currentPage === number ? active = "active" : active = '';
                 return <li className="page-item" key={number}>
-                            <Link to='/shop' className={`page-link text-dark ${active}`} id={number} onClick={this.handleClick}>{number}</Link>
+                            <Link to={this.props.match.url} className={`page-link text-dark ${active}`} id={number} onClick={this.handleClick}>{number}</Link>
                         </li>
             })
         }
@@ -94,7 +146,7 @@ class SearchContainer extends Component {
     render() {
 
         let { handlAddToCart } = this.props;
-        let { currentPage, productsPerPage, products } = this.state;
+        let { currentPage, productsPerPage, products, keyValue } = this.state;
 
         const pageNumbers = []
 
@@ -112,6 +164,7 @@ class SearchContainer extends Component {
         return (
             <Fragment>
                 <Shop
+                    keyValue = {keyValue}
                     products={products}
                     renderProduct={this.renderProduct}
                     currentProduct={currentProduct}
@@ -120,6 +173,7 @@ class SearchContainer extends Component {
                     showRating={this.showRating}
                     pageNumbers={pageNumbers}
                     productStatus={this.productStatus}
+                    handleChange={this.handleChange}
                 />
             </Fragment>
         );
