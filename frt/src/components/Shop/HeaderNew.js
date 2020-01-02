@@ -108,7 +108,7 @@ const Header = ({cart, handleDeleteCart, showTotalAmount, user, searchProduct, s
                             </div>
                         </div>
                         <div className="col-md-5 search__wrapper">
-                            <form className="form-group">
+                            <form className="form-group" onSubmit={() => searchProduct(searchKey)}>
                                 <div className="search">
                                     <div className="search__field">
                                         <input type="text" value={searchKey} name="searchKey" onChange={handleChange} placeholder="Search for products" />

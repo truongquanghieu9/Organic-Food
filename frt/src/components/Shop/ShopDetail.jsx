@@ -72,7 +72,7 @@ const ShopItemNew = ({product, quantity, isShowMessage, handlAddToCart, showRati
                                 <div className="extra">
                                     <a href="#1"><i className="far fa-heart" /></a>
                                 </div>
-                                <div className="extra">
+                                <div className="actived">
                                     <a href="#1"><i className="fas fa-sync-alt" /></a>
                                 </div>
                                 <div className="extra">

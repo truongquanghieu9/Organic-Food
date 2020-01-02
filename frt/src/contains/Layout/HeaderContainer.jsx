@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {Link} from "react-router-dom";
 import HeaderNew from 'components/Shop/HeaderNew';
-
 import { actDeleteHeaderCart } from  'store/actions/shop';
 import { logOut } from "store/actions/user";
 
@@ -29,10 +27,8 @@ class HeaderCartContainer extends Component {
     }
 
     searchProduct = (searchKey) => {
-        // <Link to={`/search/${searchKey}`}/>
-        console.log(this.props);
-        this.props[0].history.push(`/search/${searchKey}`)
-        
+        // console.log(this.props);
+        this.props[0].history.push(`/search/${searchKey}`);
     }
 
     render() {

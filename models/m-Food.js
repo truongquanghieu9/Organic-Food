@@ -29,7 +29,7 @@ const foodSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category"
     }
-}, {timestamp: true});
+}, {timestamps: true});
 
 foodSchema.pre("remove", async function(next){
     try {
@@ -52,9 +52,9 @@ foodSchema.pre("remove", async function(next){
         // remove in OrderDetail
         let foundFood = await db.OrderDetail.findOne({food_id: this._id});
         if(foundFood) await assignId("OrderDetail", id, "food_id", false);
-        // remove food in People wishlist
-        let foundWishFood = await db.People.findOne({wishlist: this._id});
-        if(foundWishFood) await spliceId("People", foundWishFood.wishlist, "food_id", this._id);
+        // remove food in User wishlist
+        let foundWishFood = await db.User.findOne({wishlist: this._id});
+        if(foundWishFood) await spliceId("User", foundWishFood.wishlist, "food_id", this._id);
         return next();
     } catch (err) {
         return next(err);

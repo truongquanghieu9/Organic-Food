@@ -2806,6 +2806,23 @@ input[type=number] {
   color: #848484;
   font-size: 1.1rem;
 }
+.shop__item .add__cart .extra:hover {
+  background-color: #89dd44;
+}
+.shop__item .add__cart .extra:hover a {
+  color: #ffffff;
+}
+.shop__item .add__cart .actived {
+  margin-left: 1%;
+  height: 55px;
+  width: 55px;
+  border: 1px solid #848484;
+  padding: 3%;
+  background-color: #89dd44;
+}
+.shop__item .add__cart .actived a {
+  color: #ffffff;
+}
 .shop__item .meta__link a {
   color: #848484;
   text-decoration: none;

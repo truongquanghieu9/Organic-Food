@@ -1,6 +1,7 @@
 const db = require("../models");
 const {genToken} = require("../utils/token");
 const mail = require("../utils/mail");
+const {spliceId} = require("../utils/dbSupport");
 
 exports.signUp = async(req, res, next) => {
     try {
@@ -117,7 +118,7 @@ exports.remove = async(req, res, next) => {
 exports.getOne = async(req, res, next) => {
     try {
         let user = await db.User.findById(req.params.user_id);
-        let {_id, viewname, email, active, avatar} = user;
+        let {_id, viewname, email, active, avatar, wishlist} = user;
 
         // get role
         let userRole = await db.UserRole.findOne({user: _id}).populate("role").exec();
@@ -129,8 +130,11 @@ exports.getOne = async(req, res, next) => {
             people_id = (await db.People.findOne({user_id: _id}).populate().exec())._id;
         }
 
+        // Generate token for storing on client
+        let token = genToken(_id, role);
+
         // return email for updating profile
-        return res.status(200).json({_id, viewname, email, avatar, role, active, people_id});
+        return res.status(200).json({_id, viewname, email, avatar, role, active, people_id, wishlist, token});
     } catch(err) {
         return next(err);
     }
@@ -228,6 +232,29 @@ exports.getAllOrderDetail = async(req, res, next) => {
             })
             .exec();
         return res.status(200).json(getOrderDetail);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+exports.getWish = async(req, res, next) => {
+    try {
+        let getFood = await db.User.findById(req.params.user_id).exec();
+        return res.status(200).json(getFood.wishlist);
+    } catch(err) {
+        return next(err);
+    }
+}
+
+exports.unWish = async(req, res, next) => {
+    try {
+        let {user_id, food_id} = req.params;
+        let foundUser = await db.User.findById(user_id).exec();
+        if(foundUser) {
+            await spliceId("User", foundUser.wishlist, "food_id", food_id);
+            foundUser.remove();
+        }
+        return res.status(200).json(foundUser);
     } catch(err) {
         return next(err);
     }

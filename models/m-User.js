@@ -29,7 +29,13 @@ const userSchema = mongoose.Schema({
     active: {
         type: Boolean,
         default: false
-    }
+    },
+    wishlist: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Food"
+        }
+    ]
 });
 
 userSchema.pre("save", async function(next){

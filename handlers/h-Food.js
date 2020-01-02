@@ -52,13 +52,13 @@ exports.remove = async(req, res, next) => {
 
 exports.wishlist = async(req, res, next) => {
     try {
-        const {food_id, people_id} = req.params;
-        let foundPeople = await db.People.findById(people_id);
+        const {food_id, user_id} = req.params;
+        let foundUser = await db.User.findById(user_id);
 
-        // push food_id to wishlist array in People
-        if(foundPeople) {
-            foundPeople.wishlist.push(food_id);
-            await foundPeople.save();
+        // push food_id to wishlist array in User
+        if(foundUser) {
+            foundUser.wishlist.push(food_id);
+            await foundUser.save();
         }
     } catch(err) {
         return next(err);

@@ -25,6 +25,7 @@ const Shop = ({products, currentProduct, pageNumbers, renderPageNumbers, handlAd
                                         <option value="rating">Sort by avarage rating</option>
                                     </select>
                                 </form> */}
+                                <br/>
                                 <form className="form-group">
                                     <a href="/search/p_low"><i>Sort by price low to high</i></a>
                                     <a href="/search/p_high"><i>Sort by price high to low</i></a>

@@ -8,14 +8,14 @@ const food = {
 }
 
 const user = {
+    getOne: (user_id) => ["get", `/api/user/${user_id}`],
     getPeople: (user_id) => ["get", `/api/user/${user_id}/getpeople`],
     getUserOrdered: (user_id) => ["get", `/api/user/${user_id}/getUserOrdered`]
 }
 
 const people = {
     getOne: (user_id, people_id) => ["get", `/api/user/${user_id}/people/${people_id}`],
-    update: (user_id, people_id) => ["put", `/api/user/${user_id}/people/${people_id}`],
-         
+    update: (user_id, people_id) => ["put", `/api/user/${user_id}/people/${people_id}`]
 }
 
 const orders = {

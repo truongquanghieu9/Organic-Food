@@ -15,6 +15,8 @@ router.route("/:user_id")
 .delete(hdl.User.remove)
 .put(hdl.User.update);
 
+router.route("/:user_id/getWish").get(hdl.User.getWish);
+router.route("/:user_id/unWish").put(hdl.User.unWish);
 router.route("/:user_id/getUserOrdered").get(hdl.User.getUserOrdered);
 router.route("/:user_id/getAllOrderDetail").get(hdl.User.getAllOrderDetail);
 router.route("/:user_id/getpeople").get(hdl.User.getPeople);
